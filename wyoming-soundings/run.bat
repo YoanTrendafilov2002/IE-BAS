@@ -1,0 +1,2 @@
+python wyomingscrape.py
+pause

@@ -1,0 +1,1 @@
+C:\path\to\your\MODIS_file.hdf

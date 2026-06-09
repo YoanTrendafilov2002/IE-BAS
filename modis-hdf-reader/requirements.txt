@@ -1,0 +1,4 @@
+numpy>=1.24,<3
+h5py>=3.10,<4
+netCDF4>=1.6,<2
+# HDF4 support is optional: install pyhdf when your platform provides it.

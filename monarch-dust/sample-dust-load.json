@@ -1,0 +1,783 @@
+{
+  "data": [
+    {
+      "forecast_hour": 0,
+      "source_day": "2023-07-10",
+      "timestamp": "10-07-2023 - 0:00",
+      "value": 1.20400648029317
+    },
+    {
+      "forecast_hour": 3,
+      "source_day": "2023-07-10",
+      "timestamp": "10-07-2023 - 3:00",
+      "value": 0.5958756332802301
+    },
+    {
+      "forecast_hour": 6,
+      "source_day": "2023-07-10",
+      "timestamp": "10-07-2023 - 6:00",
+      "value": 1.32838738409191
+    },
+    {
+      "forecast_hour": 9,
+      "source_day": "2023-07-10",
+      "timestamp": "10-07-2023 - 9:00",
+      "value": 1.7331136632492399
+    },
+    {
+      "forecast_hour": 12,
+      "source_day": "2023-07-10",
+      "timestamp": "10-07-2023 - 12:00",
+      "value": 2.8932117857039
+    },
+    {
+      "forecast_hour": 15,
+      "source_day": "2023-07-10",
+      "timestamp": "10-07-2023 - 15:00",
+      "value": 4.79387608720572
+    },
+    {
+      "forecast_hour": 18,
+      "source_day": "2023-07-10",
+      "timestamp": "10-07-2023 - 18:00",
+      "value": 6.81955680192914
+    },
+    {
+      "forecast_hour": 21,
+      "source_day": "2023-07-10",
+      "timestamp": "10-07-2023 - 21:00",
+      "value": 6.76773470331682
+    },
+    {
+      "forecast_hour": 0,
+      "source_day": "2023-07-11",
+      "timestamp": "11-07-2023 - 0:00",
+      "value": 8.70320582180284
+    },
+    {
+      "forecast_hour": 3,
+      "source_day": "2023-07-11",
+      "timestamp": "11-07-2023 - 3:00",
+      "value": 9.83936479315162
+    },
+    {
+      "forecast_hour": 6,
+      "source_day": "2023-07-11",
+      "timestamp": "11-07-2023 - 6:00",
+      "value": 9.70154269452905
+    },
+    {
+      "forecast_hour": 9,
+      "source_day": "2023-07-11",
+      "timestamp": "11-07-2023 - 9:00",
+      "value": 10.3662969195284
+    },
+    {
+      "forecast_hour": 12,
+      "source_day": "2023-07-11",
+      "timestamp": "11-07-2023 - 12:00",
+      "value": 10.5547642306192
+    },
+    {
+      "forecast_hour": 15,
+      "source_day": "2023-07-11",
+      "timestamp": "11-07-2023 - 15:00",
+      "value": 12.9437339637661
+    },
+    {
+      "forecast_hour": 18,
+      "source_day": "2023-07-11",
+      "timestamp": "11-07-2023 - 18:00",
+      "value": 15.2138745761476
+    },
+    {
+      "forecast_hour": 21,
+      "source_day": "2023-07-11",
+      "timestamp": "11-07-2023 - 21:00",
+      "value": 21.932608433417002
+    },
+    {
+      "forecast_hour": 0,
+      "source_day": "2023-07-12",
+      "timestamp": "12-07-2023 - 0:00",
+      "value": 35.9617952199187
+    },
+    {
+      "forecast_hour": 3,
+      "source_day": "2023-07-12",
+      "timestamp": "12-07-2023 - 3:00",
+      "value": 31.066010706126697
+    },
+    {
+      "forecast_hour": 6,
+      "source_day": "2023-07-12",
+      "timestamp": "12-07-2023 - 6:00",
+      "value": 153.33472401835
+    },
+    {
+      "forecast_hour": 9,
+      "source_day": "2023-07-12",
+      "timestamp": "12-07-2023 - 9:00",
+      "value": 242.462236201391
+    },
+    {
+      "forecast_hour": 12,
+      "source_day": "2023-07-12",
+      "timestamp": "12-07-2023 - 12:00",
+      "value": 265.35862707532897
+    },
+    {
+      "forecast_hour": 15,
+      "source_day": "2023-07-12",
+      "timestamp": "12-07-2023 - 15:00",
+      "value": 377.238116925582
+    },
+    {
+      "forecast_hour": 18,
+      "source_day": "2023-07-12",
+      "timestamp": "12-07-2023 - 18:00",
+      "value": 436.83603871613695
+    },
+    {
+      "forecast_hour": 21,
+      "source_day": "2023-07-12",
+      "timestamp": "12-07-2023 - 21:00",
+      "value": 581.880158279091
+    },
+    {
+      "forecast_hour": 0,
+      "source_day": "2023-07-13",
+      "timestamp": "13-07-2023 - 0:00",
+      "value": 498.524343129247
+    },
+    {
+      "forecast_hour": 3,
+      "source_day": "2023-07-13",
+      "timestamp": "13-07-2023 - 3:00",
+      "value": 552.717479877174
+    },
+    {
+      "forecast_hour": 6,
+      "source_day": "2023-07-13",
+      "timestamp": "13-07-2023 - 6:00",
+      "value": 480.523740407079
+    },
+    {
+      "forecast_hour": 9,
+      "source_day": "2023-07-13",
+      "timestamp": "13-07-2023 - 9:00",
+      "value": 366.87043029815004
+    },
+    {
+      "forecast_hour": 12,
+      "source_day": "2023-07-13",
+      "timestamp": "13-07-2023 - 12:00",
+      "value": 329.516711644828
+    },
+    {
+      "forecast_hour": 15,
+      "source_day": "2023-07-13",
+      "timestamp": "13-07-2023 - 15:00",
+      "value": 407.200015615672
+    },
+    {
+      "forecast_hour": 18,
+      "source_day": "2023-07-13",
+      "timestamp": "13-07-2023 - 18:00",
+      "value": 568.286108318716
+    },
+    {
+      "forecast_hour": 21,
+      "source_day": "2023-07-13",
+      "timestamp": "13-07-2023 - 21:00",
+      "value": 467.86689199507197
+    },
+    {
+      "forecast_hour": 0,
+      "source_day": "2023-07-14",
+      "timestamp": "14-07-2023 - 0:00",
+      "value": 420.709984609857
+    },
+    {
+      "forecast_hour": 3,
+      "source_day": "2023-07-14",
+      "timestamp": "14-07-2023 - 3:00",
+      "value": 388.90761788934503
+    },
+    {
+      "forecast_hour": 6,
+      "source_day": "2023-07-14",
+      "timestamp": "14-07-2023 - 6:00",
+      "value": 340.164580848068
+    },
+    {
+      "forecast_hour": 9,
+      "source_day": "2023-07-14",
+      "timestamp": "14-07-2023 - 9:00",
+      "value": 259.928812738508
+    },
+    {
+      "forecast_hour": 12,
+      "source_day": "2023-07-14",
+      "timestamp": "14-07-2023 - 12:00",
+      "value": 244.61880093440402
+    },
+    {
+      "forecast_hour": 15,
+      "source_day": "2023-07-14",
+      "timestamp": "14-07-2023 - 15:00",
+      "value": 215.85349168162801
+    },
+    {
+      "forecast_hour": 18,
+      "source_day": "2023-07-14",
+      "timestamp": "14-07-2023 - 18:00",
+      "value": 168.929793289863
+    },
+    {
+      "forecast_hour": 21,
+      "source_day": "2023-07-14",
+      "timestamp": "14-07-2023 - 21:00",
+      "value": 123.455887660384
+    },
+    {
+      "forecast_hour": 0,
+      "source_day": "2023-07-15",
+      "timestamp": "15-07-2023 - 0:00",
+      "value": 119.781630928628
+    },
+    {
+      "forecast_hour": 3,
+      "source_day": "2023-07-15",
+      "timestamp": "15-07-2023 - 3:00",
+      "value": 69.273664848879
+    },
+    {
+      "forecast_hour": 6,
+      "source_day": "2023-07-15",
+      "timestamp": "15-07-2023 - 6:00",
+      "value": 84.30291927652429
+    },
+    {
+      "forecast_hour": 9,
+      "source_day": "2023-07-15",
+      "timestamp": "15-07-2023 - 9:00",
+      "value": 70.8333172951825
+    },
+    {
+      "forecast_hour": 12,
+      "source_day": "2023-07-15",
+      "timestamp": "15-07-2023 - 12:00",
+      "value": 80.661935498938
+    },
+    {
+      "forecast_hour": 15,
+      "source_day": "2023-07-15",
+      "timestamp": "15-07-2023 - 15:00",
+      "value": 83.3261219668202
+    },
+    {
+      "forecast_hour": 18,
+      "source_day": "2023-07-15",
+      "timestamp": "15-07-2023 - 18:00",
+      "value": 80.249497841578
+    },
+    {
+      "forecast_hour": 21,
+      "source_day": "2023-07-15",
+      "timestamp": "15-07-2023 - 21:00",
+      "value": 71.2764885975048
+    },
+    {
+      "forecast_hour": 0,
+      "source_day": "2023-07-16",
+      "timestamp": "16-07-2023 - 0:00",
+      "value": 61.65255763335149
+    },
+    {
+      "forecast_hour": 3,
+      "source_day": "2023-07-16",
+      "timestamp": "16-07-2023 - 3:00",
+      "value": 56.226839660666904
+    },
+    {
+      "forecast_hour": 6,
+      "source_day": "2023-07-16",
+      "timestamp": "16-07-2023 - 6:00",
+      "value": 48.7246652483009
+    },
+    {
+      "forecast_hour": 9,
+      "source_day": "2023-07-16",
+      "timestamp": "16-07-2023 - 9:00",
+      "value": 52.1483198099304
+    },
+    {
+      "forecast_hour": 12,
+      "source_day": "2023-07-16",
+      "timestamp": "16-07-2023 - 12:00",
+      "value": 48.7960896862205
+    },
+    {
+      "forecast_hour": 15,
+      "source_day": "2023-07-16",
+      "timestamp": "16-07-2023 - 15:00",
+      "value": 60.385893448256
+    },
+    {
+      "forecast_hour": 18,
+      "source_day": "2023-07-16",
+      "timestamp": "16-07-2023 - 18:00",
+      "value": 103.239268355537
+    },
+    {
+      "forecast_hour": 21,
+      "source_day": "2023-07-16",
+      "timestamp": "16-07-2023 - 21:00",
+      "value": 124.410464195535
+    },
+    {
+      "forecast_hour": 0,
+      "source_day": "2023-07-17",
+      "timestamp": "17-07-2023 - 0:00",
+      "value": 174.64788106735801
+    },
+    {
+      "forecast_hour": 3,
+      "source_day": "2023-07-17",
+      "timestamp": "17-07-2023 - 3:00",
+      "value": 195.897184312344
+    },
+    {
+      "forecast_hour": 6,
+      "source_day": "2023-07-17",
+      "timestamp": "17-07-2023 - 6:00",
+      "value": 217.92204643134
+    },
+    {
+      "forecast_hour": 9,
+      "source_day": "2023-07-17",
+      "timestamp": "17-07-2023 - 9:00",
+      "value": 180.20697461906798
+    },
+    {
+      "forecast_hour": 12,
+      "source_day": "2023-07-17",
+      "timestamp": "17-07-2023 - 12:00",
+      "value": 142.42315955925702
+    },
+    {
+      "forecast_hour": 15,
+      "source_day": "2023-07-17",
+      "timestamp": "17-07-2023 - 15:00",
+      "value": 119.833115604706
+    },
+    {
+      "forecast_hour": 18,
+      "source_day": "2023-07-17",
+      "timestamp": "17-07-2023 - 18:00",
+      "value": 114.816779387183
+    },
+    {
+      "forecast_hour": 21,
+      "source_day": "2023-07-17",
+      "timestamp": "17-07-2023 - 21:00",
+      "value": 73.3674678485841
+    },
+    {
+      "forecast_hour": 0,
+      "source_day": "2023-07-18",
+      "timestamp": "18-07-2023 - 0:00",
+      "value": 59.427358792163396
+    },
+    {
+      "forecast_hour": 3,
+      "source_day": "2023-07-18",
+      "timestamp": "18-07-2023 - 3:00",
+      "value": 32.0083563565277
+    },
+    {
+      "forecast_hour": 6,
+      "source_day": "2023-07-18",
+      "timestamp": "18-07-2023 - 6:00",
+      "value": 16.7657763086027
+    },
+    {
+      "forecast_hour": 9,
+      "source_day": "2023-07-18",
+      "timestamp": "18-07-2023 - 9:00",
+      "value": 19.382956452318503
+    },
+    {
+      "forecast_hour": 12,
+      "source_day": "2023-07-18",
+      "timestamp": "18-07-2023 - 12:00",
+      "value": 22.9477846005466
+    },
+    {
+      "forecast_hour": 15,
+      "source_day": "2023-07-18",
+      "timestamp": "18-07-2023 - 15:00",
+      "value": 31.417563150171198
+    },
+    {
+      "forecast_hour": 18,
+      "source_day": "2023-07-18",
+      "timestamp": "18-07-2023 - 18:00",
+      "value": 79.1360798757523
+    },
+    {
+      "forecast_hour": 21,
+      "source_day": "2023-07-18",
+      "timestamp": "18-07-2023 - 21:00",
+      "value": 229.462850256823
+    },
+    {
+      "forecast_hour": 0,
+      "source_day": "2023-07-19",
+      "timestamp": "19-07-2023 - 0:00",
+      "value": 173.378168256022
+    },
+    {
+      "forecast_hour": 3,
+      "source_day": "2023-07-19",
+      "timestamp": "19-07-2023 - 3:00",
+      "value": 276.511913398281
+    },
+    {
+      "forecast_hour": 6,
+      "source_day": "2023-07-19",
+      "timestamp": "19-07-2023 - 6:00",
+      "value": 254.67158411629498
+    },
+    {
+      "forecast_hour": 9,
+      "source_day": "2023-07-19",
+      "timestamp": "19-07-2023 - 9:00",
+      "value": 258.614745689556
+    },
+    {
+      "forecast_hour": 12,
+      "source_day": "2023-07-19",
+      "timestamp": "19-07-2023 - 12:00",
+      "value": 300.16162781976203
+    },
+    {
+      "forecast_hour": 15,
+      "source_day": "2023-07-19",
+      "timestamp": "19-07-2023 - 15:00",
+      "value": 278.736697509885
+    },
+    {
+      "forecast_hour": 18,
+      "source_day": "2023-07-19",
+      "timestamp": "19-07-2023 - 18:00",
+      "value": 374.305061995983
+    },
+    {
+      "forecast_hour": 21,
+      "source_day": "2023-07-19",
+      "timestamp": "19-07-2023 - 21:00",
+      "value": 430.900166975334
+    },
+    {
+      "forecast_hour": 24,
+      "source_day": "2023-07-19",
+      "timestamp": "20-07-2023 - 0:00",
+      "value": 341.746839694679
+    },
+    {
+      "forecast_hour": 27,
+      "source_day": "2023-07-19",
+      "timestamp": "20-07-2023 - 3:00",
+      "value": 335.471850121394
+    },
+    {
+      "forecast_hour": 30,
+      "source_day": "2023-07-19",
+      "timestamp": "20-07-2023 - 6:00",
+      "value": 354.298594174907
+    },
+    {
+      "forecast_hour": 33,
+      "source_day": "2023-07-19",
+      "timestamp": "20-07-2023 - 9:00",
+      "value": 219.82323960401098
+    },
+    {
+      "forecast_hour": 36,
+      "source_day": "2023-07-19",
+      "timestamp": "20-07-2023 - 12:00",
+      "value": 216.248736251146
+    },
+    {
+      "forecast_hour": 39,
+      "source_day": "2023-07-19",
+      "timestamp": "20-07-2023 - 15:00",
+      "value": 178.896705619991
+    },
+    {
+      "forecast_hour": 42,
+      "source_day": "2023-07-19",
+      "timestamp": "20-07-2023 - 18:00",
+      "value": 128.41210991609802
+    },
+    {
+      "forecast_hour": 45,
+      "source_day": "2023-07-19",
+      "timestamp": "20-07-2023 - 21:00",
+      "value": 99.5274021988735
+    },
+    {
+      "forecast_hour": 48,
+      "source_day": "2023-07-19",
+      "timestamp": "21-07-2023 - 0:00",
+      "value": 84.3836678541265
+    },
+    {
+      "forecast_hour": 51,
+      "source_day": "2023-07-19",
+      "timestamp": "21-07-2023 - 3:00",
+      "value": 88.5428307810798
+    },
+    {
+      "forecast_hour": 54,
+      "source_day": "2023-07-19",
+      "timestamp": "21-07-2023 - 6:00",
+      "value": 270.19402477890304
+    },
+    {
+      "forecast_hour": 57,
+      "source_day": "2023-07-19",
+      "timestamp": "21-07-2023 - 9:00",
+      "value": 280.41662881150796
+    },
+    {
+      "forecast_hour": 60,
+      "source_day": "2023-07-19",
+      "timestamp": "21-07-2023 - 12:00",
+      "value": 259.068503510207
+    },
+    {
+      "forecast_hour": 63,
+      "source_day": "2023-07-19",
+      "timestamp": "21-07-2023 - 15:00",
+      "value": 246.214272920042
+    },
+    {
+      "forecast_hour": 66,
+      "source_day": "2023-07-19",
+      "timestamp": "21-07-2023 - 18:00",
+      "value": 260.069908108562
+    },
+    {
+      "forecast_hour": 69,
+      "source_day": "2023-07-19",
+      "timestamp": "21-07-2023 - 21:00",
+      "value": 308.429094729945
+    },
+    {
+      "forecast_hour": 0,
+      "source_day": "2023-07-22",
+      "timestamp": "22-07-2023 - 0:00",
+      "value": 302.121829008684
+    },
+    {
+      "forecast_hour": 3,
+      "source_day": "2023-07-22",
+      "timestamp": "22-07-2023 - 3:00",
+      "value": 325.670727761462
+    },
+    {
+      "forecast_hour": 6,
+      "source_day": "2023-07-22",
+      "timestamp": "22-07-2023 - 6:00",
+      "value": 304.456596495584
+    },
+    {
+      "forecast_hour": 9,
+      "source_day": "2023-07-22",
+      "timestamp": "22-07-2023 - 9:00",
+      "value": 234.964900300838
+    },
+    {
+      "forecast_hour": 12,
+      "source_day": "2023-07-22",
+      "timestamp": "22-07-2023 - 12:00",
+      "value": 164.093682542443
+    },
+    {
+      "forecast_hour": 15,
+      "source_day": "2023-07-22",
+      "timestamp": "22-07-2023 - 15:00",
+      "value": 87.69989653956151
+    },
+    {
+      "forecast_hour": 18,
+      "source_day": "2023-07-22",
+      "timestamp": "22-07-2023 - 18:00",
+      "value": 92.434449470602
+    },
+    {
+      "forecast_hour": 21,
+      "source_day": "2023-07-22",
+      "timestamp": "22-07-2023 - 21:00",
+      "value": 88.67427095538011
+    },
+    {
+      "forecast_hour": 24,
+      "source_day": "2023-07-22",
+      "timestamp": "23-07-2023 - 0:00",
+      "value": 87.6899503055029
+    },
+    {
+      "forecast_hour": 27,
+      "source_day": "2023-07-22",
+      "timestamp": "23-07-2023 - 3:00",
+      "value": 62.6050896244124
+    },
+    {
+      "forecast_hour": 30,
+      "source_day": "2023-07-22",
+      "timestamp": "23-07-2023 - 6:00",
+      "value": 57.5334379391279
+    },
+    {
+      "forecast_hour": 33,
+      "source_day": "2023-07-22",
+      "timestamp": "23-07-2023 - 9:00",
+      "value": 38.2010111934505
+    },
+    {
+      "forecast_hour": 36,
+      "source_day": "2023-07-22",
+      "timestamp": "23-07-2023 - 12:00",
+      "value": 26.429888748680202
+    },
+    {
+      "forecast_hour": 39,
+      "source_day": "2023-07-22",
+      "timestamp": "23-07-2023 - 15:00",
+      "value": 26.5243124886183
+    },
+    {
+      "forecast_hour": 42,
+      "source_day": "2023-07-22",
+      "timestamp": "23-07-2023 - 18:00",
+      "value": 25.6628973147599
+    },
+    {
+      "forecast_hour": 45,
+      "source_day": "2023-07-22",
+      "timestamp": "23-07-2023 - 21:00",
+      "value": 23.2516085816314
+    },
+    {
+      "forecast_hour": 0,
+      "source_day": "2023-07-24",
+      "timestamp": "24-07-2023 - 0:00",
+      "value": 39.3384616472758
+    },
+    {
+      "forecast_hour": 3,
+      "source_day": "2023-07-24",
+      "timestamp": "24-07-2023 - 3:00",
+      "value": 97.4086797214113
+    },
+    {
+      "forecast_hour": 6,
+      "source_day": "2023-07-24",
+      "timestamp": "24-07-2023 - 6:00",
+      "value": 605.800421908498
+    },
+    {
+      "forecast_hour": 9,
+      "source_day": "2023-07-24",
+      "timestamp": "24-07-2023 - 9:00",
+      "value": 544.548849575222
+    },
+    {
+      "forecast_hour": 12,
+      "source_day": "2023-07-24",
+      "timestamp": "24-07-2023 - 12:00",
+      "value": 523.840368259698
+    },
+    {
+      "forecast_hour": 15,
+      "source_day": "2023-07-24",
+      "timestamp": "24-07-2023 - 15:00",
+      "value": 596.609839703888
+    },
+    {
+      "forecast_hour": 18,
+      "source_day": "2023-07-24",
+      "timestamp": "24-07-2023 - 18:00",
+      "value": 715.055502951145
+    },
+    {
+      "forecast_hour": 21,
+      "source_day": "2023-07-24",
+      "timestamp": "24-07-2023 - 21:00",
+      "value": 614.301708992571
+    },
+    {
+      "forecast_hour": 24,
+      "source_day": "2023-07-24",
+      "timestamp": "25-07-2023 - 0:00",
+      "value": 411.28828888759
+    },
+    {
+      "forecast_hour": 27,
+      "source_day": "2023-07-24",
+      "timestamp": "25-07-2023 - 3:00",
+      "value": 348.04086317308196
+    },
+    {
+      "forecast_hour": 30,
+      "source_day": "2023-07-24",
+      "timestamp": "25-07-2023 - 6:00",
+      "value": 608.986709266901
+    },
+    {
+      "forecast_hour": 33,
+      "source_day": "2023-07-24",
+      "timestamp": "25-07-2023 - 9:00",
+      "value": 683.280290104449
+    },
+    {
+      "forecast_hour": 36,
+      "source_day": "2023-07-24",
+      "timestamp": "25-07-2023 - 12:00",
+      "value": 890.7004958018659
+    },
+    {
+      "forecast_hour": 39,
+      "source_day": "2023-07-24",
+      "timestamp": "25-07-2023 - 15:00",
+      "value": 1250.48530753702
+    },
+    {
+      "forecast_hour": 42,
+      "source_day": "2023-07-24",
+      "timestamp": "25-07-2023 - 18:00",
+      "value": 1181.30212649703
+    },
+    {
+      "forecast_hour": 45,
+      "source_day": "2023-07-24",
+      "timestamp": "25-07-2023 - 21:00",
+      "value": 366.871041478589
+    }
+  ],
+  "meta": {
+    "end_day": "2023-07-25",
+    "missing_day_policy": "Use most recent previous run-day file that can cover the target day via forecast lead-time (<=84h).",
+    "resolution_hours": 3,
+    "scale_applied": 1000000.0,
+    "source_folder": "C:\\Users\\user\\Documents\\BarcelonaDust\\BigfileJson",
+    "start_day": "2023-07-10",
+    "units": "mg m-2",
+    "values_per_day": 8,
+    "var_path": "data[].vars.dust_load.value"
+  }
+}
