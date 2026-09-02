@@ -25,3 +25,9 @@ values only on your own machine.
 
 Python projects recommend Python 3.10 or newer. Install dependencies from the
 `requirements.txt` in the project directory.
+
+## Additional projects
+
+The [`additional-projects`](additional-projects/) directory contains sanitized
+source snapshots of the newer embedded, desktop, web, data-analysis, WordPress,
+FPGA-reporting, and document-tooling projects recovered from the Codex workspace.

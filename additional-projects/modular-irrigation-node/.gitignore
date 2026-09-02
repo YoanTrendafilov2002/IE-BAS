@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+*.lck
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+work/
+chrome-profile/
+edge-profile/

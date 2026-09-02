@@ -1,0 +1,27 @@
+AERONET public hosting status
+Started: 2026-08-31
+
+Public URL:
+https://lakes-scientists-appointments-victory.trycloudflare.com/
+
+Local origin:
+http://127.0.0.1:8765/
+
+Processes:
+- Python HTTP server PID: 18956
+- Cloudflare Tunnel PID: 20016
+
+Public content:
+- Current HTML applications
+- Embedded AOD, AE, SSA, FMF and SDA values used by the applications
+- Current version log and manifest
+
+Not publicly served:
+- Raw Excel files
+- Raw CSV data files
+- Full ZIP package
+
+Availability:
+The public URL works only while this computer, the Python server, and the
+Cloudflare Tunnel process remain running. A Quick Tunnel URL is temporary and
+may change after a restart.

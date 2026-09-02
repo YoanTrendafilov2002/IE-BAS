@@ -1,0 +1,483 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "Getting Started with FPGAs — and Designing Them for Space",
+    "description": "A practical beginner-to-space roadmap covering digital design, HDL workflows, project progression, radiation effects, mitigation, device families, and qualification.",
+    "generatedAt": "2026-07-14T12:00:00Z",
+    "charts": [
+      {
+        "id": "roadmap_sequence",
+        "title": "When each capability enters the 12-week roadmap",
+        "subtitle": "Cumulative week by which each milestone should be demonstrated; fault-tolerant design builds on the earlier flow.",
+        "showDescription": true,
+        "type": "bar",
+        "dataset": "roadmap_sequence",
+        "sourceId": "roadmap_plan_sql",
+        "encodings": {
+          "x": { "field": "stage", "type": "nominal", "label": "Capability" },
+          "y": { "field": "week", "type": "quantitative", "label": "Cumulative week", "unit": "week" },
+          "tooltip": [
+            { "field": "stage", "type": "text", "label": "Capability" },
+            { "field": "week", "type": "quantitative", "label": "Demonstrated by week" },
+            { "field": "evidence", "type": "text", "label": "Evidence" }
+          ]
+        },
+        "valueFormat": "number",
+        "unit": "week",
+        "layout": "full"
+      }
+    ],
+    "tables": [
+      {
+        "id": "learning_roadmap",
+        "title": "A 12-week FPGA learning roadmap",
+        "subtitle": "Suggested sequence for 6–10 focused hours per week; progress is defined by verified deliverables, not elapsed time.",
+        "showDescription": true,
+        "dataset": "learning_roadmap",
+        "defaultSort": { "field": "order", "direction": "asc" },
+        "density": "spacious",
+        "sourceId": "learning_plan_sql",
+        "layout": "full",
+        "columns": [
+          { "field": "order", "label": "#", "format": "number" },
+          { "field": "period", "label": "Period", "type": "text" },
+          { "field": "focus", "label": "Focus", "type": "text" },
+          { "field": "deliverable", "label": "Verified deliverable", "type": "text" },
+          { "field": "space_connection", "label": "Space connection", "type": "text" }
+        ]
+      },
+      {
+        "id": "configuration_technology",
+        "title": "FPGA configuration technologies behave differently under radiation",
+        "subtitle": "General architecture-level comparison; individual part radiation reports and the mission environment remain authoritative.",
+        "showDescription": true,
+        "dataset": "configuration_technology",
+        "defaultSort": { "field": "order", "direction": "asc" },
+        "density": "spacious",
+        "sourceId": "config_tech_sql",
+        "layout": "full",
+        "columns": [
+          { "field": "order", "label": "#", "format": "number" },
+          { "field": "technology", "label": "Configuration", "type": "text" },
+          { "field": "strength", "label": "Principal strength", "type": "text" },
+          { "field": "radiation_issue", "label": "Radiation implication", "type": "text" },
+          { "field": "operations", "label": "Operational consequence", "type": "text" },
+          { "field": "typical_fit", "label": "Typical fit", "type": "text" }
+        ]
+      },
+      {
+        "id": "mitigation_layers",
+        "title": "Space reliability comes from layered mitigation",
+        "subtitle": "No single technique covers configuration memory, user state, embedded memories, interfaces, destructive effects, and operational recovery.",
+        "showDescription": true,
+        "dataset": "mitigation_layers",
+        "defaultSort": { "field": "order", "direction": "asc" },
+        "density": "spacious",
+        "sourceId": "mitigation_layers_sql",
+        "layout": "full",
+        "columns": [
+          { "field": "order", "label": "#", "format": "number" },
+          { "field": "layer", "label": "Layer", "type": "text" },
+          { "field": "techniques", "label": "Representative techniques", "type": "text" },
+          { "field": "protects", "label": "What it protects", "type": "text" },
+          { "field": "limitation", "label": "Important limitation", "type": "text" }
+        ]
+      },
+      {
+        "id": "mission_selection",
+        "title": "A mission-first FPGA selection scorecard",
+        "subtitle": "Questions to answer before comparing device data sheets or committing to a toolchain.",
+        "showDescription": true,
+        "dataset": "mission_selection",
+        "defaultSort": { "field": "order", "direction": "asc" },
+        "density": "spacious",
+        "sourceId": "mission_selection_sql",
+        "layout": "full",
+        "columns": [
+          { "field": "order", "label": "#", "format": "number" },
+          { "field": "decision", "label": "Decision area", "type": "text" },
+          { "field": "questions", "label": "Questions to resolve", "type": "text" },
+          { "field": "evidence", "label": "Evidence expected", "type": "text" }
+        ]
+      },
+      {
+        "id": "project_ladder",
+        "title": "Project ladder from first LED to a space-style capstone",
+        "subtitle": "Each project adds one new design risk while preserving verification discipline.",
+        "showDescription": true,
+        "dataset": "project_ladder",
+        "defaultSort": { "field": "level", "direction": "asc" },
+        "density": "spacious",
+        "sourceId": "project_ladder_sql",
+        "layout": "full",
+        "columns": [
+          { "field": "level", "label": "Level", "type": "text" },
+          { "field": "build", "label": "Build", "type": "text" },
+          { "field": "new_skill", "label": "New skill", "type": "text" },
+          { "field": "done_when", "label": "Done when", "type": "text" }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "roadmap_plan_sql",
+        "label": "Report learning-roadmap milestones",
+        "query": {
+          "engine": "portable-sql",
+          "language": "sql",
+          "sql": "SELECT * FROM (VALUES ('Board bring-up', 0, 'Known-good sample programmed'), ('RTL fundamentals', 2, 'Counters and FSMs verified'), ('Simulation and I/O', 4, 'Self-checking UART/PWM tests'), ('Timing constraints', 6, 'Constrained design meets timing'), ('Memory and CDC', 8, 'Dual-clock FIFO passes scoreboard'), ('DSP and interfaces', 10, 'Pipelined kernel matches reference'), ('Automation and debug', 11, 'Clean scripted build and capture'), ('Fault-tolerant capstone', 12, 'Fault campaign and recovery report')) AS t(stage, week, evidence)",
+          "description": "Materializes the author-defined milestone sequence used in the learning roadmap chart.",
+          "executed_at": "2026-07-14T12:00:00Z"
+        }
+      },
+      {
+        "id": "learning_plan_sql",
+        "label": "Report 12-week learning-plan table",
+        "query": {
+          "engine": "portable-sql",
+          "language": "sql",
+          "sql": "SELECT * FROM (VALUES (1, 'Week 0', 'Tool and board bring-up', 'Program a vendor sample; identify device, clock, programmer, I/O voltage, and constraints file.', 'Configuration chain and known-good recovery begin with reproducible bring-up.'), (2, 'Weeks 1–2', 'Digital logic and HDL', 'Simulate and synthesize combinational logic, counters, finite-state machines, and parameterized modules.', 'Clear state boundaries make later redundancy and fault analysis possible.'), (3, 'Weeks 3–4', 'Simulation and synchronous I/O', 'Self-checking testbench for debounced buttons, PWM, seven-segment display, and UART transmit.', 'Deterministic verification and input conditioning are prerequisites for fault injection.'), (4, 'Weeks 5–6', 'Constraints and timing', 'Constrained UART RX/TX design with clean synthesis, implementation, and timing reports.', 'Radiation and aging can reduce margin; you must know the baseline timing budget.'), (5, 'Weeks 7–8', 'Memories, FIFOs, and CDC', 'Dual-clock data path using an asynchronous FIFO, overflow handling, and CDC analysis.', 'Memories and crossings are major fault-containment and upset-propagation boundaries.'), (6, 'Weeks 9–10', 'DSP and interfaces', 'Pipelined FIR, moving average, or FFT front end connected to SPI/I2C/UART data.', 'Mirrors payload preprocessing and software-defined radio data paths.'), (7, 'Week 11', 'Debug and automation', 'Scripted clean build, embedded logic-analyzer capture, regression log, and resource/power summary.', 'Flight releases require reproducibility, observability, and configuration control.'), (8, 'Week 12+', 'Fault-tolerant capstone', 'Telemetry pipeline with ECC/parity, watchdog, TMR or duplication, fault injection, and recovery evidence.', 'Exercises the core space FPGA assurance argument on accessible hardware.')) AS t(order_no, period, focus, deliverable, space_connection)",
+          "description": "Materializes the author-defined 12-week learning plan shown in the report.",
+          "executed_at": "2026-07-14T12:00:00Z"
+        }
+      },
+      {
+        "id": "config_tech_sql",
+        "label": "Report FPGA configuration-technology comparison",
+        "query": {
+          "engine": "portable-sql",
+          "language": "sql",
+          "sql": "SELECT * FROM (VALUES (1, 'Antifuse (one-time programmable)', 'Nonvolatile permanent interconnect; configuration is not stored as upset-sensitive RAM.', 'Configuration is intrinsically resistant to ordinary configuration SEUs, but user logic and device structures still require SEE/TID analysis.', 'Cannot be reprogrammed after programming; no algorithm update or in-flight repair through reconfiguration.', 'Stable, critical functions where configuration integrity outweighs flexibility.'), (2, 'Flash / SONOS nonvolatile', 'Instant-on, reprogrammable, and no SRAM configuration image to continuously scrub on devices specified as configuration-upset immune.', 'Configuration may be robust, but user registers, SRAM, clocks, transceivers, and peripherals can still upset; TID limits remain device-specific.', 'Supports controlled updates without volatile boot configuration; update interruption and authentication still require design.', 'Low-power avionics and payloads that need reprogramming with reduced configuration-maintenance burden.'), (3, 'SRAM-configured', 'Highest density/performance options and effectively unlimited reconfiguration, including partial reconfiguration on supported families.', 'Configuration bits can upset and alter logic or routing; user state and embedded memories also have separate upset modes.', 'Needs boot memory and usually detection/correction or scrubbing, fault telemetry, safe reconfiguration, and golden-image recovery.', 'High-throughput payload processing, SDR, AI, and missions that value in-flight adaptability.')) AS t(order_no, technology, strength, radiation_issue, operations, typical_fit)",
+          "description": "Materializes the report comparison synthesized from NASA FPGA radiation-test guidance and official device documentation.",
+          "executed_at": "2026-07-14T12:00:00Z"
+        }
+      },
+      {
+        "id": "mitigation_layers_sql",
+        "label": "Report layered-mitigation matrix",
+        "query": {
+          "engine": "portable-sql",
+          "language": "sql",
+          "sql": "SELECT * FROM (VALUES (1, 'Mission and parts assurance', 'Environment model, shielding model, device/lot radiation data, derating, screening, qualification.', 'Prevents selecting a part whose intrinsic behavior cannot meet the mission.', 'Analysis is only as good as the mission model, test relevance, and configuration/lot match.'), (2, 'Configuration', 'CRC/readback, SEM controller, blind or corrective scrubbing, redundant images, golden boot, external supervisor.', 'SRAM configuration memory and recovery from corrupted or failed updates.', 'Scrubbing does not by itself repair user flip-flops or embedded memories; detection latency leaves an exposure window.'), (3, 'Control logic', 'TMR, duplication with compare, hardened/state-safe FSMs, spatial separation, voter monitoring.', 'State upsets and transients in selected critical control paths.', 'Area/power cost, common-mode faults, voter vulnerability, and physical implementation dependence.'), (4, 'Memories and data', 'SECDED/ECC, parity, interleaving, memory scrubbing, CRC, replay, range/plausibility checks.', 'BRAM/external-memory upsets and corrupted packets or samples.', 'Multi-bit errors may exceed the code; correction can hide a rising fault rate without telemetry.'), (5, 'Timing, clocks, and resets', 'Redundant clocks, clock monitors, filtered reset release, bounded domains, watchdog timers.', 'Loss of progress, clock faults, reset transients, and some functional interrupts.', 'A watchdog detects symptoms after latency and can create reset loops if recovery is not bounded.'), (6, 'System architecture', 'Cold/warm redundancy, independent supervisor, power cycling, safe mode, fault containment, cross-strapping.', 'Device-level SEFIs, persistent faults, common service loss, and failed recovery inside the main FPGA.', 'Adds board mass, power, interfaces, verification scope, and new common-cause paths.'), (7, 'Operations and observability', 'Fault counters, health telemetry, authenticated updates, rollback, recovery timelines, rehearsed procedures.', 'Mission availability and diagnosis after faults that cannot be fully masked in hardware.', 'Ground intervention may be too slow for safety-critical or autonomous phases.')) AS t(order_no, layer_name, techniques, protects, limitation)",
+          "description": "Materializes the layered-mitigation matrix synthesized from ECSS and NASA guidance.",
+          "executed_at": "2026-07-14T12:00:00Z"
+        }
+      },
+      {
+        "id": "mission_selection_sql",
+        "label": "Report mission-first selection scorecard",
+        "query": {
+          "engine": "portable-sql",
+          "language": "sql",
+          "sql": "SELECT * FROM (VALUES (1, 'Environment and lifetime', 'Which orbit/trajectory, inclination, shielding, duration, temperature range, solar assumptions, and powered duty cycle?', 'Radiation environment specification, TID/TNID/SEE predictions, thermal and mechanical environments, design margins.'), (2, 'Criticality and recovery', 'What failures are catastrophic, what data loss is acceptable, and how quickly must service recover?', 'FMEA/FMECA, fault tree, availability budget, safe-state definition, reset/reconfiguration time allocation.'), (3, 'Compute and interfaces', 'Required throughput, latency, precision, memory, DSP, transceivers, processors, I/O standards, and clock quality?', 'Executable performance model, interface control documents, utilization/timing prototypes, power and thermal estimates.'), (4, 'Technology and assurance', 'Antifuse, nonvolatile, or SRAM? Which qualification class, package, traceability, tool/IP pedigree, and radiation reports?', 'Exact ordering-code data, qualification and screening flow, radiation reports, errata, tool support matrix, supply-chain plan.'), (5, 'Configuration and operations', 'Is in-flight update required? Who supervises boot, scrubbing, authentication, rollback, and power-cycle recovery?', 'Configuration architecture, threat model, golden-image design, interruption tests, fault telemetry, operational procedures.'), (6, 'Verification and testability', 'How will faults be injected, latent faults detected, margins measured, and production bitstreams reproduced?', 'Verification plan, fault campaign, coverage argument, automated build records, timing/power reports, environmental and radiation test plans.')) AS t(order_no, decision_area, questions, evidence)",
+          "description": "Materializes the mission-first FPGA selection scorecard derived from the RHA workflow.",
+          "executed_at": "2026-07-14T12:00:00Z"
+        }
+      },
+      {
+        "id": "project_ladder_sql",
+        "label": "Report FPGA project ladder",
+        "query": {
+          "engine": "portable-sql",
+          "language": "sql",
+          "sql": "SELECT * FROM (VALUES ('1', 'Counter, button synchronizer/debouncer, LED and seven-segment driver', 'Clocked state, parameters, synchronous reset, physical constraints', 'Simulation checks rollover and bounce; board behavior matches calculated frequency.'), ('2', 'UART transmitter and receiver', 'Baud timing, FSMs, sampling, protocol error handling', 'Randomized loopback tests pass across baud mismatch and framing-error cases.'), ('3', 'SPI sensor interface with register file', 'External timing, transactions, timeouts, command/status architecture', 'A behavioral sensor model verifies normal, delayed, and malformed transactions.'), ('4', 'Dual-clock FIFO data bridge', 'Metastability, Gray pointers, CDC, overflow/underflow', 'Independent randomized clocks pass a scoreboard; CDC findings are explained.'), ('5', 'Pipelined FIR or image-processing kernel', 'Fixed-point arithmetic, DSP inference, throughput/latency, resource tradeoffs', 'Bit-accurate comparison against a software reference passes and timing closes.'), ('6', 'Space-style telemetry processor', 'TMR/compare, ECC/parity, watchdog, fault injection, telemetry, recovery', 'A documented campaign shows correction, containment, or explicit hazard classification for every injected fault.')) AS t(level_no, build, new_skill, done_when)",
+          "description": "Materializes the author-defined FPGA project ladder shown in the report.",
+          "executed_at": "2026-07-14T12:00:00Z"
+        }
+      },
+      { "id": "amd_vivado_flow", "label": "AMD Vivado design-flow documentation", "href": "https://docs.amd.com/r/en-US/ug939-vivado-designing-with-ip-tutorial/Step-8-Launch-Synthesis-and-Implementation" },
+      { "id": "altera_getting_started", "label": "Altera Quartus Prime support and getting-started resources", "href": "https://www.intel.com/content/www/us/en/support/programmable/support-resources/design-guidance/quartus-support.html" },
+      { "id": "microchip_libero", "label": "Microchip Libero SoC design-flow documentation", "href": "https://www.microchip.com/en-us/products/fpgas-and-plds/fpga-and-soc-design-tools/fpga/libero-software-later-versions/libero--soc-design-flow-user-guide" },
+      { "id": "yosys_docs", "label": "Yosys official documentation", "href": "https://yosyshq.readthedocs.io/projects/yosys/en/0.40/introduction.html" },
+      { "id": "basys3_manual", "label": "Digilent Basys 3 reference manual", "href": "https://digilent.com/reference/_media/reference/programmable-logic/basys-3/basys3_rm.pdf" },
+      { "id": "nasa_fpga_test_guidelines", "label": "NASA NEPP FPGA single-event-effect radiation test guidelines", "href": "https://nepp.nasa.gov/files/23779/FPGA_Radiation_Test_Guidelines_2012.pdf" },
+      { "id": "nasa_see_bulletin", "label": "NASA technical bulletin on mitigating single-event effects", "href": "https://ntrs.nasa.gov/citations/20210024100" },
+      { "id": "ecss_mitigation_handbook", "label": "ECSS-E-HB-20-40A radiation-effects mitigation handbook", "href": "https://ecss.nl/home/ecss-e-hb-20-40a-engineering-techniques-for-radiation-effects-mitigation-in-asics-and-fpgas-handbook/" },
+      { "id": "ecss_rha_standard", "label": "ECSS-Q-ST-60-15C Rev.1 radiation hardness assurance", "href": "https://ecss.nl/standard/ecss-q-st-60-15c-rev-1-radiation-hardness-assurance-20-march-2025/" },
+      { "id": "ecss_fpga_pa", "label": "ECSS-Q-ST-60-03C ASIC, FPGA and IP Core product assurance", "href": "https://ecss.nl/standard/ecss-q-st-60-03c-asic-fpga-and-ip-core-product-assurance-11-october-2023/" },
+      { "id": "esa_reprogrammable", "label": "ESA guidance on reprogrammable FPGAs in space", "href": "https://www.esa.int/Enabling_Support/Space_Engineering_Technology/Microelectronics/The_use_of_reprogrammable_FPGAs_in_space" },
+      { "id": "esa_drpm", "label": "ESA dynamically reconfigurable processing module", "href": "https://www.esa.int/Enabling_Support/Space_Engineering_Technology/Onboard_Data_Processing/DRPM_-_Dynamically_Reconfigurable_Processing_Module" },
+      { "id": "nasa_spacecube", "label": "NASA SpaceCube technology overview", "href": "https://technology.nasa.gov/patent/GSC-TOPS-35" },
+      { "id": "amd_space", "label": "AMD space-grade FPGA and adaptive SoC portfolio", "href": "https://www.amd.com/en/solutions/aerospace-and-defense/space.html" },
+      { "id": "microchip_rtpolarfire", "label": "Microchip RT PolarFire FPGA product information", "href": "https://www.microchip.com/en-us/products/fpgas-and-plds/radiation-tolerant-fpgas/rt-polarfire-fpgas" },
+      { "id": "microchip_rtg4", "label": "Microchip RTG4 technical brief", "href": "https://ww1.microchip.com/downloads/aemDocuments/documents/FPGA/ProductDocuments/UserGuides/RTG4-FPGA-Technical-Brief.pdf" },
+      { "id": "nanoxplore_ngultra", "label": "NanoXplore NG-ULTRA radiation-hardened SoC FPGA", "href": "https://nanoxplore.com/product/ng-ultra/" }
+    ],
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "body": "# Getting Started with FPGAs — and Designing Them for Space"
+      },
+      {
+        "id": "technical_summary",
+        "type": "markdown",
+        "body": "## Technical summary\n\n**The fastest route into space FPGA work is to become competent at ordinary synchronous digital design first.** Start with a mainstream commercial board, one HDL, simulation, synthesis, timing constraints, and repeatable hardware tests. Then add the space-specific layer: mission radiation analysis, fault-tolerant architecture, configuration recovery, parts assurance, and verification under injected faults.\n\nA sensible default for a beginner is **SystemVerilog + an Artix-7 education board such as the Basys 3 + AMD Vivado**. The board exposes switches, LEDs, buttons, UART/JTAG, a display, and expansion connectors, which makes early debugging concrete. If you strongly prefer an open-source flow, use a supported Lattice iCE40/ECP5 board with **Yosys + nextpnr**. If your goal is specifically Microchip space hardware, learn the same fundamentals on a commercial PolarFire target in **Libero SoC** before moving to RT PolarFire or RTG4. Microchip explicitly supports beginning RT PolarFire development on commercial PolarFire hardware.\n\n**For space, device choice is mission-specific.** Radiation hardness is not a single number: total ionizing dose, displacement damage, and single-event effects must be evaluated against orbit, shielding, duration, criticality, and failure recovery. SRAM-configured FPGAs offer density and in-flight reconfiguration but normally require configuration monitoring/scrubbing and logic-level mitigation. Nonvolatile flash/SONOS and antifuse technologies remove configuration-memory upset mechanisms, but user flip-flops, RAM, clocks, I/O, and system-level failure modes still need analysis.\n\n**Do not treat “rad-tolerant” as “mission-safe.”** Qualification, lot control, radiation test evidence, timing and power margins, fault injection, safe update behavior, board-level environmental tests, and an operational recovery concept are all part of the engineering argument. NASA notes that even radiation-hardened parts may not tolerate every relevant effect; ECSS likewise defines radiation hardness assurance as a project-specific program covering TID, TNID, and SEE."
+      },
+      {
+        "id": "fpga_mental_model",
+        "type": "markdown",
+        "body": "## An FPGA is hardware you configure, not a fast program\n\nA field-programmable gate array is a grid of configurable logic and routing. Your HDL describes a circuit that the tools map onto physical resources. The main resources are:\n\n- **Look-up tables (LUTs):** implement combinational Boolean logic.\n- **Flip-flops/registers:** hold state on clock edges.\n- **Block RAM (BRAM):** on-chip memories and FIFOs.\n- **DSP blocks:** efficient multiply, accumulate, filtering, and other arithmetic.\n- **Clocking resources:** PLLs/MMCMs, global buffers, and clock networks.\n- **I/O and transceivers:** connect ordinary digital pins or multi-gigabit serial links.\n\nThe essential mental shift is **concurrency**. In software, statements usually execute in sequence. In RTL, many registers and combinational paths operate simultaneously every clock cycle. A ten-stage pipeline can process ten different data items at once; its throughput may be one result per cycle even though each item takes ten cycles to traverse the pipeline.\n\nThis is why “the code simulated” is not enough. The circuit must also fit, route, meet timing, start safely, cross clock domains correctly, and behave at its real electrical interfaces."
+      },
+      {
+        "id": "starter_setup",
+        "type": "markdown",
+        "body": "## Choose one simple toolchain and stay with it through several projects\n\n### Recommended default\n\nUse a **Basys 3 or similar Artix-7 board**, **Vivado**, and **SystemVerilog**. The Basys 3 includes 16 switches, 16 LEDs, five pushbuttons, a four-digit display, USB JTAG/UART, VGA, and Pmod expansion, so it supports a long project ladder without extra hardware. Vivado covers simulation, synthesis, implementation, bitstream generation, and on-chip debug; AMD’s documented flow explicitly progresses from RTL/IP through synthesis, placement, routing, and bitstream generation.\n\n### Open-source alternative\n\nChoose a board with an iCE40 or ECP5 device and use **Verilog + Yosys + nextpnr**. Yosys documents an end-to-end open flow for those families. This path is attractive for automation and transparency, although vendor tools still matter professionally and support more devices and vendor-specific IP.\n\n### Space-aligned alternative\n\nIf you expect to work with **RTG4 or RT PolarFire**, use a commercial PolarFire board and **Libero SoC** after your first small projects. Libero integrates synthesis, simulation, constraints, place-and-route, timing, power, programming, and debug. Do not begin on an expensive flight-grade board unless a laboratory or employer already supplies the hardware, licenses, radiation data, and mentoring.\n\n### Language choice\n\nPick **SystemVerilog** if you have no institutional constraint: it is widely used and gives you strong testbench constructs and assertions. Pick **VHDL** when your university, employer, or target project standardizes on it. The engineering concepts transfer. Avoid learning two HDLs simultaneously."
+      },
+      {
+        "id": "normal_flow",
+        "type": "markdown",
+        "body": "## The complete FPGA workflow is the skill—not just writing RTL\n\nA professional flow has nine linked stages:\n\n1. **Requirements and interfaces:** clock rates, latency, throughput, protocols, reset behavior, power, and failure response.\n2. **Microarchitecture:** datapaths, state machines, pipelines, buffers, clock domains, and resource estimates.\n3. **RTL and assertions:** synthesizable design code plus properties that define intended behavior.\n4. **Simulation:** self-checking testbenches, corner cases, randomized inputs, and protocol violations.\n5. **Synthesis:** RTL becomes a logical netlist; review inferred memories, DSPs, latches, warnings, and utilization.\n6. **Constraints:** declare clocks, generated clocks, I/O timing, clock groups, and only justified exceptions.\n7. **Implementation:** placement and routing map the netlist into the physical device.\n8. **Static timing analysis:** verify setup, hold, pulse-width, and clock-domain assumptions across relevant corners.\n9. **Hardware validation:** program the board, use known test patterns, capture internal signals with an embedded logic analyzer, and compare behavior with simulation.\n\nAMD, Altera, and Microchip all expose this same underlying flow even though their GUIs and file formats differ. Treat warnings as engineering evidence: every unconstrained path, inferred latch, truncated arithmetic result, unused clock, or CDC warning should be understood and dispositioned."
+      },
+      {
+        "id": "roadmap_intro",
+        "type": "markdown",
+        "body": "## A twelve-week plan builds capability in dependency order\n\nThe chart shows the cumulative sequence: fault-tolerant design is the capstone, not the starting point. The roadmap assumes roughly 6–10 focused hours per week. If a deliverable is not independently verified, repeat the stage instead of advancing. The sequence intentionally introduces simulation and timing early; postponing them creates habits that are difficult to correct later."
+      },
+      {
+        "id": "roadmap_sequence_block",
+        "type": "chart",
+        "chartId": "roadmap_sequence"
+      },
+      {
+        "id": "learning_roadmap_block",
+        "type": "table",
+        "tableId": "learning_roadmap"
+      },
+      {
+        "id": "project_ladder_intro",
+        "type": "markdown",
+        "body": "## Projects should add one new failure mode at a time\n\nA useful project is small enough to finish but rich enough to force a measurable engineering decision. Keep every project in version control with RTL, testbench, constraints, build script or project-generation Tcl, expected results, and a short README. The end condition is evidence—not an LED that appeared to blink once."
+      },
+      {
+        "id": "project_ladder_block",
+        "type": "table",
+        "tableId": "project_ladder"
+      },
+      {
+        "id": "verification_habits",
+        "type": "markdown",
+        "body": "## Verification habits determine whether your FPGA skills scale\n\nAdopt these practices from the first project:\n\n- **Write a self-checking testbench before board bring-up.** A waveform is useful for diagnosis; pass/fail checks make regression possible.\n- **Use one synchronous clock wherever practical.** Generate clock enables instead of fabric-divided clocks for slow functions.\n- **Synchronize asynchronous inputs.** A two-flop synchronizer is suitable for a slowly changing single bit; multi-bit data needs a handshake, asynchronous FIFO, or protocol designed for CDC.\n- **Debounce mechanical inputs.** Buttons and switches do not transition cleanly.\n- **Reset deliberately.** Define assertion, deassertion, domain synchronization, and the state of every externally visible interface.\n- **Use nonblocking assignments for clocked state and blocking assignments for combinational calculation.** Avoid unintended latches by assigning every combinational output on all paths.\n- **Constrain clocks and I/O.** Timing analysis cannot prove what you have not described.\n- **Check arithmetic width and signedness.** Silent truncation and unintended unsigned operations are common FPGA bugs.\n- **Budget resources and latency.** Track LUTs, registers, BRAM, DSPs, clock buffers, timing slack, power estimates, and pipeline delay.\n- **Automate clean builds.** A project that only builds from one developer’s GUI state is not reproducible enough for serious work."
+      },
+      {
+        "id": "why_space",
+        "type": "markdown",
+        "body": "## Space systems use FPGAs where deterministic data movement meets change\n\nFPGAs sit between general-purpose processors and ASICs. Compared with a CPU, they offer massive parallelism, deterministic cycle-level latency, custom I/O, and high throughput per data path. Compared with an ASIC, they avoid non-recurring silicon development and can often be changed late—or, for reprogrammable parts, after launch.\n\nCommon roles include:\n\n- **Payload ingest and preprocessing:** sensor interfaces, formatting, calibration, filtering, compression, and packetization. NASA has documented FPGA implementations for lossless hyperspectral compression, while SpaceCube combines FPGA processing with upset detection and correction for high-rate science data.\n- **Software-defined radio:** digital down/up-conversion, channelization, modulation, coding, beamforming, and adaptable waveforms. ESA’s reconfigurable processing work highlights image processing and SDR as high-data-rate applications.\n- **Communications and networking:** SpaceWire/SpaceFibre, Ethernet, custom serial links, CCSDS framing/coding, switching, and time distribution.\n- **Guidance, navigation, and control support:** deterministic sensor acquisition, motor/actuator timing, image or lidar preprocessing, and safety monitors.\n- **On-board autonomy and AI inference:** filtering raw data, detecting events, prioritizing downlink, and accelerating matrix/DSP workloads.\n- **Avionics integration:** protocol bridges, redundancy management, voting, watchdogs, health monitoring, and deterministic peripherals.\n\nReconfiguration is valuable when standards, algorithms, or mission phases change. ESA notes that long satellite lifetimes can outlast telecommunications standards, making in-flight reprogrammability strategically important. The trade is that every update path becomes a safety-critical subsystem requiring authentication, rollback, interruption recovery, and a known-good image."
+      },
+      {
+        "id": "radiation_effects",
+        "type": "markdown",
+        "body": "## Radiation changes the FPGA problem from functional correctness to quantified resilience\n\nA mission radiation environment depends on orbit or trajectory, altitude, inclination, trapped belts, solar activity, galactic cosmic rays, shielding, device location, and mission duration. The three principal component-level categories used by ECSS are:\n\n- **Total ionizing dose (TID):** cumulative charge trapped in insulating structures can shift thresholds, increase leakage, slow paths, or ultimately cause functional failure.\n- **Total non-ionizing dose / displacement damage (TNID):** lattice damage is especially important for optoelectronics, sensors, and some semiconductor structures; its relevance to a specific FPGA and its peripherals must be assessed.\n- **Single-event effects (SEE):** one particle can cause a temporary logic pulse (SET), a bit upset (SEU), a functional interrupt (SEFI), latch-up (SEL), or destructive effects such as burnout or gate rupture in susceptible technologies.\n\nFor an FPGA, identify **where state exists**: configuration memory, user registers, BRAM, distributed RAM, FIFOs, transceiver state, PLLs, processors, caches, external memories, and the boot device. A configuration upset in an SRAM FPGA can alter routing or logic until corrected; a user-register upset changes application state; a transient can be captured by a downstream register. These are different fault models and need different mitigations. NASA’s SEE guidance emphasizes that susceptibility and consequence depend on the part, application, mission, and lifetime—not merely the commercial or space-grade label."
+      },
+      {
+        "id": "config_intro",
+        "type": "markdown",
+        "body": "## Configuration technology sets the first-order mitigation burden\n\nThe comparison below is architectural, not a substitute for a device radiation report. In particular, “configuration-immune” does not mean the user design is immune: embedded memories, user registers, clocks, I/O, and external components can still experience radiation effects."
+      },
+      {
+        "id": "configuration_block",
+        "type": "table",
+        "tableId": "configuration_technology"
+      },
+      {
+        "id": "mitigation_intro",
+        "type": "markdown",
+        "body": "## Mitigation must be assigned to specific fault modes\n\nTriple modular redundancy (TMR) replicates a function three times and votes the result. It can mask one faulty replica, but it costs area and power, voters can become common points of failure, and a persistent configuration fault remains until repaired. Configuration scrubbing detects or corrects configuration-memory errors, but ECSS notes that it does not by itself correct user flip-flops or embedded BRAM. ECC protects memories, not arbitrary control logic. Watchdogs detect loss of progress, not silent data corruption. Reliable systems combine these techniques according to a fault-containment architecture."
+      },
+      {
+        "id": "mitigation_block",
+        "type": "table",
+        "tableId": "mitigation_layers"
+      },
+      {
+        "id": "space_architecture",
+        "type": "markdown",
+        "body": "## A credible space FPGA architecture includes recovery outside the FPGA\n\nFor a critical reprogrammable FPGA, a robust pattern is:\n\n1. **Trusted boot and configuration storage:** multiple authenticated images, protected metadata, and a read-only or physically protected golden image.\n2. **Independent supervisor:** a rad-hard or otherwise justified controller can monitor power, clocks, configuration status, scrub progress, watchdogs, and fault counters, and can power-cycle or reconfigure the main FPGA.\n3. **Fault-contained application partitions:** separate critical control from high-throughput payload logic; prevent a payload failure from removing the recovery path.\n4. **Protected state:** TMR or duplication-with-compare for selected control, ECC/parity for memories and links, periodic memory scrubbing, safe state-machine encoding, and bounded reset domains.\n5. **Configuration maintenance:** detect, classify, and repair configuration errors at a rate justified by predicted upset rate and acceptable exposure time. AMD’s SEM guidance explicitly recommends deciding system actions for correctable, uncorrectable, and essential-bit events, and considering an external supervisory function.\n6. **Telemetry and operations:** count corrected/uncorrected errors, resets, watchdog expirations, scrub cycles, image selections, temperatures, currents, and timing-margin indicators. Provide commanded safe modes and tested rollback.\n\nThe independent supervisor matters because a recovery mechanism implemented only inside the component it must recover can share the same failure. NASA’s SpaceCube architecture uses upset detection/correction, configuration scrubbing, watchdogs, redundant configuration copies, and, for harsher environments, an external rad-hard monitor."
+      },
+      {
+        "id": "device_landscape",
+        "type": "markdown",
+        "body": "## Current space FPGA families span different performance and assurance strategies\n\nAs of July 2026, representative families include:\n\n- **Microchip RTG4:** a radiation-tolerant flash-configured FPGA. Microchip specifies configuration-upset immunity, hardened sequential logic, EDAC-protected SRAM, optional SET filtering, and TID greater than 100 krad for the family. Its nonvolatile configuration reduces the configuration-scrubbing burden, but application state and the surrounding system still require fault analysis.\n- **Microchip RT PolarFire:** a higher-density, low-power nonvolatile family using SONOS configuration. Microchip lists 481k logic elements, 33 Mb embedded SRAM, 1,480 multipliers, 24 transceiver lanes, 100 krad TID, and no configuration upsets for RTPF500ZT, with QML Class Q qualification. Treat these as vendor specifications to be reconciled with the exact ordering code, test reports, environment, and required margin.\n- **AMD Kintex UltraScale XQR:** a space-grade SRAM FPGA aimed at high-throughput, high-bandwidth and reconfigurable payload processing. Its flexibility and density come with a configuration-memory SEE analysis and mitigation obligation.\n- **AMD Versal XQR:** heterogeneous space-grade adaptive SoCs combining programmable logic with scalar, vector/DSP, and—on selected devices—AI engines. AMD publishes device-level TID, latch-up, configuration-memory upset, BRAM upset, and SEFI data on its space portfolio page. Complexity increases the verification, boot, software, and fault-containment burden.\n- **NanoXplore NG-ULTRA:** a European radiation-hardened-by-design SoC FPGA built on FD-SOI, integrating programmable logic, processors, memories, and space-oriented interfaces. NanoXplore and ST announced qualification to ESCC 9030 in January 2026.\n\nThis list is illustrative, not a procurement recommendation. Availability, export restrictions, lead times, packages, qualification level, tool versions, IP licensing, radiation test coverage, and exact ordering codes change. Select with component, radiation, reliability, thermal, mechanical, security, and supply-chain engineers—not from a marketing comparison alone."
+      },
+      {
+        "id": "selection_intro",
+        "type": "markdown",
+        "body": "## Start device selection with the mission and fault budget\n\nThe scorecard below prevents a common failure: selecting the fastest part first and discovering late that the configuration technology, qualification flow, package, radiation evidence, update path, or power system cannot support the mission."
+      },
+      {
+        "id": "mission_selection_block",
+        "type": "table",
+        "tableId": "mission_selection"
+      },
+      {
+        "id": "qualification_flow",
+        "type": "markdown",
+        "body": "## Space development adds an assurance case around the ordinary FPGA flow\n\nA defensible program proceeds in this order:\n\n1. **Define the environment and mission:** orbit/trajectory, shielding, duration, temperature, power cycles, vibration, criticality, availability, and allowed recovery time.\n2. **Allocate reliability requirements:** acceptable event rates, data-loss bounds, safe-state behavior, reset/reconfiguration time, and single-point-failure policy.\n3. **Select candidate parts and evidence:** exact device and package, qualification class, lot traceability, TID/SEE data, destructive-effect limits, aging, derating, and tool/IP pedigree.\n4. **Model the architecture:** identify sensitive state and common-cause paths; calculate predicted upset/interrupt rates; allocate TMR, ECC, scrubbing, redundancy, or operational recovery where each is effective.\n5. **Verify the RTL and netlist:** requirements traceability, code review, lint, CDC/RDC analysis, simulation, assertions, formal checks where valuable, post-synthesis review, timing closure, and reproducible builds.\n6. **Inject faults:** flip user state, corrupt BRAM words, inject protocol errors, exercise vendor SEM/error-injection features, interrupt configuration updates, corrupt candidate images, stall clocks, and test watchdog/recovery timing.\n7. **Characterize hardware:** power, thermal margin, signal integrity, timing across voltage/temperature, EMI/EMC, vibration, shock, thermal cycling, and thermal vacuum as required. Radiation tests must match the failure modes and technology; NASA publishes FPGA-specific SEE test guidance.\n8. **Control production and release:** qualified parts, screening, lot/date-code control, approved tool versions, reproducible bitstreams, configuration audits, signed releases, and discrepancy control.\n9. **Validate operations:** safe upload, authentication, rollback, golden-image recovery, telemetry thresholds, anomaly response, and rehearsed ground procedures.\n\nFor European projects, current reference points include **ECSS-E-ST-20-40C** for ASIC/FPGA/IP-core engineering, **ECSS-Q-ST-60-03C** for product assurance, and **ECSS-Q-ST-60-15C Rev.1** for radiation hardness assurance. Standards are tailored by project; a handbook is guidance, while an invoked standard creates requirements."
+      },
+      {
+        "id": "capstone",
+        "type": "markdown",
+        "body": "## Build a terrestrial “space-style telemetry processor” as your capstone\n\nYou can practice most fault-tolerance concepts without radiation equipment or a flight-grade FPGA. Build this on your beginner board:\n\n**Function:** accept sensor words over UART or SPI, timestamp them, place them in a FIFO, compute CRC, form fixed-length telemetry packets, and transmit them over UART. Include a command channel that can change sample rate and request status.\n\n**Reliability features:**\n\n- TMR the command/control state machine or use duplication-with-compare and a safe reset response.\n- Protect the telemetry buffer with ECC if the device supports it; otherwise implement parity plus retry/drop accounting.\n- Add a watchdog and progress counter monitored by an independent small control block.\n- Maintain saturating counters for corrected errors, packet CRC failures, FIFO overflow, watchdog resets, and injected faults.\n- Add a compile-time or runtime fault-injection interface that can flip selected state bits, corrupt memory words, suppress acknowledgements, and stall a state machine.\n- Store two parameter/configuration sets and prove fallback after a deliberately corrupted update.\n\n**Verification evidence:** a requirements table, architecture diagram, clock/reset plan, self-checking simulation, assertions, functional coverage of normal and recovery paths, CDC report, timing report, resource/power summary, automated build, fault-injection campaign, and a short failure-mode-and-effects table.\n\n**Success criterion:** every injected fault is either corrected, detected and contained, or explicitly classified as an uncovered hazard with a proposed mitigation. “The board kept running” is not enough; you need evidence that the output data remained valid or that invalid data was flagged and recovery occurred within the requirement."
+      },
+      {
+        "id": "mistakes",
+        "type": "markdown",
+        "body": "## Common mistakes—and the habit that prevents each one\n\n- **Treating HDL like software:** draw the intended registers and combinational paths before coding.\n- **Testing only on hardware:** simulate first and keep a regression suite.\n- **Creating many ad hoc clocks:** use clock enables and dedicated clocking resources; document every domain.\n- **Ignoring metastability:** classify every clock-domain and asynchronous crossing.\n- **Using timing exceptions to hide failures:** an exception is a design assertion; review and justify it.\n- **Resetting everything without analysis:** excessive reset routing can hurt timing and does not replace valid-data protocols.\n- **Assuming TMR solves radiation:** map each mitigation to configuration, registers, memories, transients, SEFIs, and system recovery separately.\n- **Assuming a rad-hard part makes a rad-hard system:** external memory, power converters, oscillators, boot devices, transceivers, connectors, and software can dominate risk.\n- **Choosing COTS solely because a CubeSat flew it:** mission environment, shielding, lifetime, duty cycle, lot, board design, and acceptable risk may differ.\n- **Leaving update recovery until late:** implement golden-image boot, interruption recovery, authentication, and telemetry early.\n- **Depending on GUI state:** script project creation and builds; archive tool versions, IP versions, constraints, seeds, and reports."
+      },
+      {
+        "id": "next_steps",
+        "type": "markdown",
+        "body": "## Recommended next steps\n\n1. **This week:** choose one board/toolchain, install the tools, program a vendor sample, and confirm the programmer, clock, LED, UART, and constraints file.\n2. **Next:** complete the counter/debouncer and UART projects with self-checking simulations and timing reports.\n3. **By project three:** move builds into version control and automate project creation or compilation.\n4. **After the FIFO/CDC project:** read the NASA FPGA SEE test guidelines and the ECSS mitigation handbook sections on configuration scrubbing, TMR, memories, and validation. Revisit your design and mark every sensitive state element.\n5. **Then:** implement the space-style telemetry capstone and run a documented fault-injection campaign.\n6. **For career preparation:** learn one vendor flow deeply, one scripting language (Python or Tcl), Git, Linux command-line operation, digital interfaces, static timing, CDC, and enough radiation-effects engineering to communicate with component and RHA specialists.\n\nA strong beginner portfolio is three or four small, rigorously verified projects—not one enormous SoC design copied from a tutorial. For space roles, add the fault-injection capstone and a concise assurance report explaining the mission assumptions, fault model, mitigations, uncovered risks, and recovery evidence."
+      },
+      {
+        "id": "limitations",
+        "type": "markdown",
+        "body": "## Limitations and questions that change the recommendation\n\nThis report is a general technical roadmap, not a mission qualification or procurement decision. Device specifications and qualification status were checked against official sources available on **14 July 2026**, but exact part numbers, packages, screening flows, tool support, and radiation reports must be revalidated at selection and design review. Vendor performance and radiation claims are not interchangeable because test methods, environments, units, confidence bounds, and device conditions differ.\n\nThe best next refinement depends on five unanswered questions:\n\n- Are you starting from programming, electronics, or neither?\n- Is your target a hobby project, university laboratory, CubeSat, commercial constellation, or high-assurance agency mission?\n- Do you expect payload DSP/AI, communications, or platform avionics?\n- Which vendor ecosystem is used by your course, lab, or employer?\n- What budget, operating system, and access to boards/licenses do you have?\n\nThose answers would change the board choice, project depth, mathematical prerequisites, and how soon to introduce SoC processors, high-speed transceivers, formal verification, and radiation-rate calculations."
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-07-14T12:00:00Z",
+    "status": "ready",
+    "datasets": {
+      "roadmap_sequence": [
+        { "stage": "Board bring-up", "week": 0, "evidence": "Known-good sample programmed" },
+        { "stage": "RTL fundamentals", "week": 2, "evidence": "Counters and FSMs verified" },
+        { "stage": "Simulation and I/O", "week": 4, "evidence": "Self-checking UART/PWM tests" },
+        { "stage": "Timing constraints", "week": 6, "evidence": "Constrained design meets timing" },
+        { "stage": "Memory and CDC", "week": 8, "evidence": "Dual-clock FIFO passes scoreboard" },
+        { "stage": "DSP and interfaces", "week": 10, "evidence": "Pipelined kernel matches reference" },
+        { "stage": "Automation and debug", "week": 11, "evidence": "Clean scripted build and capture" },
+        { "stage": "Fault-tolerant capstone", "week": 12, "evidence": "Fault campaign and recovery report" }
+      ],
+      "learning_roadmap": [
+        { "order": 1, "period": "Week 0", "focus": "Tool and board bring-up", "deliverable": "Program a vendor sample; identify device, clock, programmer, I/O voltage, and constraints file.", "space_connection": "Configuration chain and known-good recovery begin with reproducible bring-up." },
+        { "order": 2, "period": "Weeks 1–2", "focus": "Digital logic and HDL", "deliverable": "Simulate and synthesize combinational logic, counters, finite-state machines, and parameterized modules.", "space_connection": "Clear state boundaries make later redundancy and fault analysis possible." },
+        { "order": 3, "period": "Weeks 3–4", "focus": "Simulation and synchronous I/O", "deliverable": "Self-checking testbench for debounced buttons, PWM, seven-segment display, and UART transmit.", "space_connection": "Deterministic verification and input conditioning are prerequisites for fault injection." },
+        { "order": 4, "period": "Weeks 5–6", "focus": "Constraints and timing", "deliverable": "Constrained UART RX/TX design with clean synthesis, implementation, and timing reports.", "space_connection": "Radiation and aging can reduce margin; you must know the baseline timing budget." },
+        { "order": 5, "period": "Weeks 7–8", "focus": "Memories, FIFOs, and CDC", "deliverable": "Dual-clock data path using an asynchronous FIFO, overflow handling, and CDC analysis.", "space_connection": "Memories and crossings are major fault-containment and upset-propagation boundaries." },
+        { "order": 6, "period": "Weeks 9–10", "focus": "DSP and interfaces", "deliverable": "Pipelined FIR, moving average, or FFT front end connected to SPI/I2C/UART data.", "space_connection": "Mirrors payload preprocessing and software-defined radio data paths." },
+        { "order": 7, "period": "Week 11", "focus": "Debug and automation", "deliverable": "Scripted clean build, embedded logic-analyzer capture, regression log, and resource/power summary.", "space_connection": "Flight releases require reproducibility, observability, and configuration control." },
+        { "order": 8, "period": "Week 12+", "focus": "Fault-tolerant capstone", "deliverable": "Telemetry pipeline with ECC/parity, watchdog, TMR or duplication, fault injection, and recovery evidence.", "space_connection": "Exercises the core space FPGA assurance argument on accessible hardware." }
+      ],
+      "configuration_technology": [
+        { "order": 1, "technology": "Antifuse (one-time programmable)", "strength": "Nonvolatile permanent interconnect; configuration is not stored as upset-sensitive RAM.", "radiation_issue": "Configuration is intrinsically resistant to ordinary configuration SEUs, but user logic and device structures still require SEE/TID analysis.", "operations": "Cannot be reprogrammed after programming; no algorithm update or in-flight repair through reconfiguration.", "typical_fit": "Stable, critical functions where configuration integrity outweighs flexibility." },
+        { "order": 2, "technology": "Flash / SONOS nonvolatile", "strength": "Instant-on, reprogrammable, and no SRAM configuration image to continuously scrub on devices specified as configuration-upset immune.", "radiation_issue": "Configuration may be robust, but user registers, SRAM, clocks, transceivers, and peripherals can still upset; TID limits remain device-specific.", "operations": "Supports controlled updates without volatile boot configuration; update interruption and authentication still require design.", "typical_fit": "Low-power avionics and payloads that need reprogramming with reduced configuration-maintenance burden." },
+        { "order": 3, "technology": "SRAM-configured", "strength": "Highest density/performance options and effectively unlimited reconfiguration, including partial reconfiguration on supported families.", "radiation_issue": "Configuration bits can upset and alter logic or routing; user state and embedded memories also have separate upset modes.", "operations": "Needs boot memory and usually detection/correction or scrubbing, fault telemetry, safe reconfiguration, and golden-image recovery.", "typical_fit": "High-throughput payload processing, SDR, AI, and missions that value in-flight adaptability." }
+      ],
+      "mitigation_layers": [
+        { "order": 1, "layer": "Mission and parts assurance", "techniques": "Environment model, shielding model, device/lot radiation data, derating, screening, qualification.", "protects": "Prevents selecting a part whose intrinsic behavior cannot meet the mission.", "limitation": "Analysis is only as good as the mission model, test relevance, and configuration/lot match." },
+        { "order": 2, "layer": "Configuration", "techniques": "CRC/readback, SEM controller, blind or corrective scrubbing, redundant images, golden boot, external supervisor.", "protects": "SRAM configuration memory and recovery from corrupted or failed updates.", "limitation": "Scrubbing does not by itself repair user flip-flops or embedded memories; detection latency leaves an exposure window." },
+        { "order": 3, "layer": "Control logic", "techniques": "TMR, duplication with compare, hardened/state-safe FSMs, spatial separation, voter monitoring.", "protects": "State upsets and transients in selected critical control paths.", "limitation": "Area/power cost, common-mode faults, voter vulnerability, and physical implementation dependence." },
+        { "order": 4, "layer": "Memories and data", "techniques": "SECDED/ECC, parity, interleaving, memory scrubbing, CRC, replay, range/plausibility checks.", "protects": "BRAM/external-memory upsets and corrupted packets or samples.", "limitation": "Multi-bit errors may exceed the code; correction can hide a rising fault rate without telemetry." },
+        { "order": 5, "layer": "Timing, clocks, and resets", "techniques": "Redundant clocks, clock monitors, filtered reset release, bounded domains, watchdog timers.", "protects": "Loss of progress, clock faults, reset transients, and some functional interrupts.", "limitation": "A watchdog detects symptoms after latency and can create reset loops if recovery is not bounded." },
+        { "order": 6, "layer": "System architecture", "techniques": "Cold/warm redundancy, independent supervisor, power cycling, safe mode, fault containment, cross-strapping.", "protects": "Device-level SEFIs, persistent faults, common service loss, and failed recovery inside the main FPGA.", "limitation": "Adds board mass, power, interfaces, verification scope, and new common-cause paths." },
+        { "order": 7, "layer": "Operations and observability", "techniques": "Fault counters, health telemetry, authenticated updates, rollback, recovery timelines, rehearsed procedures.", "protects": "Mission availability and diagnosis after faults that cannot be fully masked in hardware.", "limitation": "Ground intervention may be too slow for safety-critical or autonomous phases." }
+      ],
+      "mission_selection": [
+        { "order": 1, "decision": "Environment and lifetime", "questions": "Which orbit/trajectory, inclination, shielding, duration, temperature range, solar assumptions, and powered duty cycle?", "evidence": "Radiation environment specification, TID/TNID/SEE predictions, thermal and mechanical environments, design margins." },
+        { "order": 2, "decision": "Criticality and recovery", "questions": "What failures are catastrophic, what data loss is acceptable, and how quickly must service recover?", "evidence": "FMEA/FMECA, fault tree, availability budget, safe-state definition, reset/reconfiguration time allocation." },
+        { "order": 3, "decision": "Compute and interfaces", "questions": "Required throughput, latency, precision, memory, DSP, transceivers, processors, I/O standards, and clock quality?", "evidence": "Executable performance model, interface control documents, utilization/timing prototypes, power and thermal estimates." },
+        { "order": 4, "decision": "Technology and assurance", "questions": "Antifuse, nonvolatile, or SRAM? Which qualification class, package, traceability, tool/IP pedigree, and radiation reports?", "evidence": "Exact ordering-code data, qualification and screening flow, radiation reports, errata, tool support matrix, supply-chain plan." },
+        { "order": 5, "decision": "Configuration and operations", "questions": "Is in-flight update required? Who supervises boot, scrubbing, authentication, rollback, and power-cycle recovery?", "evidence": "Configuration architecture, threat model, golden-image design, interruption tests, fault telemetry, operational procedures." },
+        { "order": 6, "decision": "Verification and testability", "questions": "How will faults be injected, latent faults detected, margins measured, and production bitstreams reproduced?", "evidence": "Verification plan, fault campaign, coverage argument, automated build records, timing/power reports, environmental and radiation test plans." }
+      ],
+      "project_ladder": [
+        { "order": 1, "level": "1", "build": "Counter, button synchronizer/debouncer, LED and seven-segment driver", "new_skill": "Clocked state, parameters, synchronous reset, physical constraints", "done_when": "Simulation checks rollover and bounce; board behavior matches calculated frequency." },
+        { "order": 2, "level": "2", "build": "UART transmitter and receiver", "new_skill": "Baud timing, FSMs, sampling, protocol error handling", "done_when": "Randomized loopback tests pass across baud mismatch and framing-error cases." },
+        { "order": 3, "level": "3", "build": "SPI sensor interface with register file", "new_skill": "External timing, transactions, timeouts, command/status architecture", "done_when": "A behavioral sensor model verifies normal, delayed, and malformed transactions." },
+        { "order": 4, "level": "4", "build": "Dual-clock FIFO data bridge", "new_skill": "Metastability, Gray pointers, CDC, overflow/underflow", "done_when": "Independent randomized clocks pass a scoreboard; CDC findings are explained." },
+        { "order": 5, "level": "5", "build": "Pipelined FIR or image-processing kernel", "new_skill": "Fixed-point arithmetic, DSP inference, throughput/latency, resource tradeoffs", "done_when": "Bit-accurate comparison against a software reference passes and timing closes." },
+        { "order": 6, "level": "6", "build": "Space-style telemetry processor", "new_skill": "TMR/compare, ECC/parity, watchdog, fault injection, telemetry, recovery", "done_when": "A documented campaign shows correction, containment, or explicit hazard classification for every injected fault." }
+      ]
+    }
+  },
+  "sources": [
+    {
+      "id": "roadmap_plan_sql",
+      "label": "Report learning-roadmap milestones",
+      "query": {
+        "engine": "portable-sql",
+        "language": "sql",
+        "sql": "SELECT * FROM (VALUES ('Board bring-up', 0, 'Known-good sample programmed'), ('RTL fundamentals', 2, 'Counters and FSMs verified'), ('Simulation and I/O', 4, 'Self-checking UART/PWM tests'), ('Timing constraints', 6, 'Constrained design meets timing'), ('Memory and CDC', 8, 'Dual-clock FIFO passes scoreboard'), ('DSP and interfaces', 10, 'Pipelined kernel matches reference'), ('Automation and debug', 11, 'Clean scripted build and capture'), ('Fault-tolerant capstone', 12, 'Fault campaign and recovery report')) AS t(stage, week, evidence)",
+        "description": "Materializes the author-defined milestone sequence used in the learning roadmap chart.",
+        "executed_at": "2026-07-14T12:00:00Z"
+      }
+    },
+    {
+      "id": "learning_plan_sql",
+      "label": "Report 12-week learning-plan table",
+      "query": {
+        "engine": "portable-sql",
+        "language": "sql",
+        "sql": "SELECT * FROM (VALUES (1, 'Week 0', 'Tool and board bring-up', 'Program a vendor sample; identify device, clock, programmer, I/O voltage, and constraints file.', 'Configuration chain and known-good recovery begin with reproducible bring-up.'), (2, 'Weeks 1–2', 'Digital logic and HDL', 'Simulate and synthesize combinational logic, counters, finite-state machines, and parameterized modules.', 'Clear state boundaries make later redundancy and fault analysis possible.'), (3, 'Weeks 3–4', 'Simulation and synchronous I/O', 'Self-checking testbench for debounced buttons, PWM, seven-segment display, and UART transmit.', 'Deterministic verification and input conditioning are prerequisites for fault injection.'), (4, 'Weeks 5–6', 'Constraints and timing', 'Constrained UART RX/TX design with clean synthesis, implementation, and timing reports.', 'Radiation and aging can reduce margin; you must know the baseline timing budget.'), (5, 'Weeks 7–8', 'Memories, FIFOs, and CDC', 'Dual-clock data path using an asynchronous FIFO, overflow handling, and CDC analysis.', 'Memories and crossings are major fault-containment and upset-propagation boundaries.'), (6, 'Weeks 9–10', 'DSP and interfaces', 'Pipelined FIR, moving average, or FFT front end connected to SPI/I2C/UART data.', 'Mirrors payload preprocessing and software-defined radio data paths.'), (7, 'Week 11', 'Debug and automation', 'Scripted clean build, embedded logic-analyzer capture, regression log, and resource/power summary.', 'Flight releases require reproducibility, observability, and configuration control.'), (8, 'Week 12+', 'Fault-tolerant capstone', 'Telemetry pipeline with ECC/parity, watchdog, TMR or duplication, fault injection, and recovery evidence.', 'Exercises the core space FPGA assurance argument on accessible hardware.')) AS t(order_no, period, focus, deliverable, space_connection)",
+        "description": "Materializes the author-defined 12-week learning plan shown in the report.",
+        "executed_at": "2026-07-14T12:00:00Z"
+      }
+    },
+    {
+      "id": "config_tech_sql",
+      "label": "Report FPGA configuration-technology comparison",
+      "query": {
+        "engine": "portable-sql",
+        "language": "sql",
+        "sql": "SELECT * FROM (VALUES (1, 'Antifuse (one-time programmable)', 'Nonvolatile permanent interconnect; configuration is not stored as upset-sensitive RAM.', 'Configuration is intrinsically resistant to ordinary configuration SEUs, but user logic and device structures still require SEE/TID analysis.', 'Cannot be reprogrammed after programming; no algorithm update or in-flight repair through reconfiguration.', 'Stable, critical functions where configuration integrity outweighs flexibility.'), (2, 'Flash / SONOS nonvolatile', 'Instant-on, reprogrammable, and no SRAM configuration image to continuously scrub on devices specified as configuration-upset immune.', 'Configuration may be robust, but user registers, SRAM, clocks, transceivers, and peripherals can still upset; TID limits remain device-specific.', 'Supports controlled updates without volatile boot configuration; update interruption and authentication still require design.', 'Low-power avionics and payloads that need reprogramming with reduced configuration-maintenance burden.'), (3, 'SRAM-configured', 'Highest density/performance options and effectively unlimited reconfiguration, including partial reconfiguration on supported families.', 'Configuration bits can upset and alter logic or routing; user state and embedded memories also have separate upset modes.', 'Needs boot memory and usually detection/correction or scrubbing, fault telemetry, safe reconfiguration, and golden-image recovery.', 'High-throughput payload processing, SDR, AI, and missions that value in-flight adaptability.')) AS t(order_no, technology, strength, radiation_issue, operations, typical_fit)",
+        "description": "Materializes the report comparison synthesized from NASA FPGA radiation-test guidance and official device documentation.",
+        "executed_at": "2026-07-14T12:00:00Z"
+      }
+    },
+    {
+      "id": "mitigation_layers_sql",
+      "label": "Report layered-mitigation matrix",
+      "query": {
+        "engine": "portable-sql",
+        "language": "sql",
+        "sql": "SELECT * FROM (VALUES (1, 'Mission and parts assurance', 'Environment model, shielding model, device/lot radiation data, derating, screening, qualification.', 'Prevents selecting a part whose intrinsic behavior cannot meet the mission.', 'Analysis is only as good as the mission model, test relevance, and configuration/lot match.'), (2, 'Configuration', 'CRC/readback, SEM controller, blind or corrective scrubbing, redundant images, golden boot, external supervisor.', 'SRAM configuration memory and recovery from corrupted or failed updates.', 'Scrubbing does not by itself repair user flip-flops or embedded memories; detection latency leaves an exposure window.'), (3, 'Control logic', 'TMR, duplication with compare, hardened/state-safe FSMs, spatial separation, voter monitoring.', 'State upsets and transients in selected critical control paths.', 'Area/power cost, common-mode faults, voter vulnerability, and physical implementation dependence.'), (4, 'Memories and data', 'SECDED/ECC, parity, interleaving, memory scrubbing, CRC, replay, range/plausibility checks.', 'BRAM/external-memory upsets and corrupted packets or samples.', 'Multi-bit errors may exceed the code; correction can hide a rising fault rate without telemetry.'), (5, 'Timing, clocks, and resets', 'Redundant clocks, clock monitors, filtered reset release, bounded domains, watchdog timers.', 'Loss of progress, clock faults, reset transients, and some functional interrupts.', 'A watchdog detects symptoms after latency and can create reset loops if recovery is not bounded.'), (6, 'System architecture', 'Cold/warm redundancy, independent supervisor, power cycling, safe mode, fault containment, cross-strapping.', 'Device-level SEFIs, persistent faults, common service loss, and failed recovery inside the main FPGA.', 'Adds board mass, power, interfaces, verification scope, and new common-cause paths.'), (7, 'Operations and observability', 'Fault counters, health telemetry, authenticated updates, rollback, recovery timelines, rehearsed procedures.', 'Mission availability and diagnosis after faults that cannot be fully masked in hardware.', 'Ground intervention may be too slow for safety-critical or autonomous phases.')) AS t(order_no, layer_name, techniques, protects, limitation)",
+        "description": "Materializes the layered-mitigation matrix synthesized from ECSS and NASA guidance.",
+        "executed_at": "2026-07-14T12:00:00Z"
+      }
+    },
+    {
+      "id": "mission_selection_sql",
+      "label": "Report mission-first selection scorecard",
+      "query": {
+        "engine": "portable-sql",
+        "language": "sql",
+        "sql": "SELECT * FROM (VALUES (1, 'Environment and lifetime', 'Which orbit/trajectory, inclination, shielding, duration, temperature range, solar assumptions, and powered duty cycle?', 'Radiation environment specification, TID/TNID/SEE predictions, thermal and mechanical environments, design margins.'), (2, 'Criticality and recovery', 'What failures are catastrophic, what data loss is acceptable, and how quickly must service recover?', 'FMEA/FMECA, fault tree, availability budget, safe-state definition, reset/reconfiguration time allocation.'), (3, 'Compute and interfaces', 'Required throughput, latency, precision, memory, DSP, transceivers, processors, I/O standards, and clock quality?', 'Executable performance model, interface control documents, utilization/timing prototypes, power and thermal estimates.'), (4, 'Technology and assurance', 'Antifuse, nonvolatile, or SRAM? Which qualification class, package, traceability, tool/IP pedigree, and radiation reports?', 'Exact ordering-code data, qualification and screening flow, radiation reports, errata, tool support matrix, supply-chain plan.'), (5, 'Configuration and operations', 'Is in-flight update required? Who supervises boot, scrubbing, authentication, rollback, and power-cycle recovery?', 'Configuration architecture, threat model, golden-image design, interruption tests, fault telemetry, operational procedures.'), (6, 'Verification and testability', 'How will faults be injected, latent faults detected, margins measured, and production bitstreams reproduced?', 'Verification plan, fault campaign, coverage argument, automated build records, timing/power reports, environmental and radiation test plans.')) AS t(order_no, decision_area, questions, evidence)",
+        "description": "Materializes the mission-first FPGA selection scorecard derived from the RHA workflow.",
+        "executed_at": "2026-07-14T12:00:00Z"
+      }
+    },
+    {
+      "id": "project_ladder_sql",
+      "label": "Report FPGA project ladder",
+      "query": {
+        "engine": "portable-sql",
+        "language": "sql",
+        "sql": "SELECT * FROM (VALUES ('1', 'Counter, button synchronizer/debouncer, LED and seven-segment driver', 'Clocked state, parameters, synchronous reset, physical constraints', 'Simulation checks rollover and bounce; board behavior matches calculated frequency.'), ('2', 'UART transmitter and receiver', 'Baud timing, FSMs, sampling, protocol error handling', 'Randomized loopback tests pass across baud mismatch and framing-error cases.'), ('3', 'SPI sensor interface with register file', 'External timing, transactions, timeouts, command/status architecture', 'A behavioral sensor model verifies normal, delayed, and malformed transactions.'), ('4', 'Dual-clock FIFO data bridge', 'Metastability, Gray pointers, CDC, overflow/underflow', 'Independent randomized clocks pass a scoreboard; CDC findings are explained.'), ('5', 'Pipelined FIR or image-processing kernel', 'Fixed-point arithmetic, DSP inference, throughput/latency, resource tradeoffs', 'Bit-accurate comparison against a software reference passes and timing closes.'), ('6', 'Space-style telemetry processor', 'TMR/compare, ECC/parity, watchdog, fault injection, telemetry, recovery', 'A documented campaign shows correction, containment, or explicit hazard classification for every injected fault.')) AS t(level_no, build, new_skill, done_when)",
+        "description": "Materializes the author-defined FPGA project ladder shown in the report.",
+        "executed_at": "2026-07-14T12:00:00Z"
+      }
+    },
+    { "id": "amd_vivado_flow", "label": "AMD Vivado design-flow documentation", "href": "https://docs.amd.com/r/en-US/ug939-vivado-designing-with-ip-tutorial/Step-8-Launch-Synthesis-and-Implementation" },
+    { "id": "altera_getting_started", "label": "Altera Quartus Prime support and getting-started resources", "href": "https://www.intel.com/content/www/us/en/support/programmable/support-resources/design-guidance/quartus-support.html" },
+    { "id": "microchip_libero", "label": "Microchip Libero SoC design-flow documentation", "href": "https://www.microchip.com/en-us/products/fpgas-and-plds/fpga-and-soc-design-tools/fpga/libero-software-later-versions/libero--soc-design-flow-user-guide" },
+    { "id": "yosys_docs", "label": "Yosys official documentation", "href": "https://yosyshq.readthedocs.io/projects/yosys/en/0.40/introduction.html" },
+    { "id": "basys3_manual", "label": "Digilent Basys 3 reference manual", "href": "https://digilent.com/reference/_media/reference/programmable-logic/basys-3/basys3_rm.pdf" },
+    { "id": "nasa_fpga_test_guidelines", "label": "NASA NEPP FPGA single-event-effect radiation test guidelines", "href": "https://nepp.nasa.gov/files/23779/FPGA_Radiation_Test_Guidelines_2012.pdf" },
+    { "id": "nasa_see_bulletin", "label": "NASA technical bulletin on mitigating single-event effects", "href": "https://ntrs.nasa.gov/citations/20210024100" },
+    { "id": "ecss_mitigation_handbook", "label": "ECSS-E-HB-20-40A radiation-effects mitigation handbook", "href": "https://ecss.nl/home/ecss-e-hb-20-40a-engineering-techniques-for-radiation-effects-mitigation-in-asics-and-fpgas-handbook/" },
+    { "id": "ecss_rha_standard", "label": "ECSS-Q-ST-60-15C Rev.1 radiation hardness assurance", "href": "https://ecss.nl/standard/ecss-q-st-60-15c-rev-1-radiation-hardness-assurance-20-march-2025/" },
+    { "id": "ecss_fpga_pa", "label": "ECSS-Q-ST-60-03C ASIC, FPGA and IP Core product assurance", "href": "https://ecss.nl/standard/ecss-q-st-60-03c-asic-fpga-and-ip-core-product-assurance-11-october-2023/" },
+    { "id": "esa_reprogrammable", "label": "ESA guidance on reprogrammable FPGAs in space", "href": "https://www.esa.int/Enabling_Support/Space_Engineering_Technology/Microelectronics/The_use_of_reprogrammable_FPGAs_in_space" },
+    { "id": "esa_drpm", "label": "ESA dynamically reconfigurable processing module", "href": "https://www.esa.int/Enabling_Support/Space_Engineering_Technology/Onboard_Data_Processing/DRPM_-_Dynamically_Reconfigurable_Processing_Module" },
+    { "id": "nasa_spacecube", "label": "NASA SpaceCube technology overview", "href": "https://technology.nasa.gov/patent/GSC-TOPS-35" },
+    { "id": "amd_space", "label": "AMD space-grade FPGA and adaptive SoC portfolio", "href": "https://www.amd.com/en/solutions/aerospace-and-defense/space.html" },
+    { "id": "microchip_rtpolarfire", "label": "Microchip RT PolarFire FPGA product information", "href": "https://www.microchip.com/en-us/products/fpgas-and-plds/radiation-tolerant-fpgas/rt-polarfire-fpgas" },
+    { "id": "microchip_rtg4", "label": "Microchip RTG4 technical brief", "href": "https://ww1.microchip.com/downloads/aemDocuments/documents/FPGA/ProductDocuments/UserGuides/RTG4-FPGA-Technical-Brief.pdf" },
+    { "id": "nanoxplore_ngultra", "label": "NanoXplore NG-ULTRA radiation-hardened SoC FPGA", "href": "https://nanoxplore.com/product/ng-ultra/" }
+  ]
+}

@@ -1,0 +1,204 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100">
+  <defs>
+    <style>
+      .bg { fill: #fbfbf8; }
+      .box { fill: #ffffff; stroke: #222; stroke-width: 2; rx: 6; }
+      .subtle { fill: #f1f4f7; stroke: #506070; stroke-width: 1.5; rx: 6; }
+      .power { stroke: #c62828; stroke-width: 4; fill: none; }
+      .gnd { stroke: #263238; stroke-width: 4; fill: none; }
+      .sig { stroke: #1565c0; stroke-width: 3; fill: none; }
+      .i2c { stroke: #00897b; stroke-width: 3; fill: none; }
+      .note { fill: #fff8dc; stroke: #8a6d00; stroke-width: 1.5; rx: 6; }
+      .txt { font-family: Arial, Helvetica, sans-serif; fill: #111; font-size: 22px; }
+      .small { font-family: Arial, Helvetica, sans-serif; fill: #111; font-size: 17px; }
+      .tiny { font-family: Arial, Helvetica, sans-serif; fill: #111; font-size: 14px; }
+      .label { font-family: Arial, Helvetica, sans-serif; fill: #333; font-size: 18px; font-weight: bold; }
+      .rail { font-family: Arial, Helvetica, sans-serif; font-size: 18px; font-weight: bold; }
+      .red { fill: #c62828; }
+      .blue { fill: #1565c0; }
+      .green { fill: #00897b; }
+      .black { fill: #263238; }
+    </style>
+    <marker id="arrow-red" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#c62828"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#1565c0"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1600" height="1100"/>
+  <text class="txt" x="54" y="55" font-weight="bold" font-size="34">Basic schematic: ESP32-S3 plant/water monitor and pump controller</text>
+  <text class="small" x="56" y="86">All grounds common. Set boost converter output to 5.0 V before connecting the ESP32-S3-Zero and pump.</text>
+
+  <!-- Power input and battery charger -->
+  <rect class="box" x="70" y="160" width="260" height="170"/>
+  <text class="txt" x="92" y="195" font-weight="bold">K548 Li-ion charger</text>
+  <text class="small" x="92" y="226">USB-C IN: 5 V</text>
+  <text class="small" x="92" y="256">B+ / B- to LiPo</text>
+  <text class="small" x="92" y="286">OUT+ / OUT- to load</text>
+
+  <rect class="box" x="80" y="420" width="240" height="130"/>
+  <text class="txt" x="102" y="458" font-weight="bold">Li-Po 103450</text>
+  <text class="small" x="102" y="492">3.7 V nominal</text>
+  <text class="small" x="102" y="522">2000 mAh, JST</text>
+
+  <rect class="subtle" x="410" y="203" width="130" height="82"/>
+  <text class="small" x="434" y="238" font-weight="bold">Slide</text>
+  <text class="small" x="433" y="262" font-weight="bold">switch</text>
+
+  <rect class="box" x="610" y="170" width="260" height="150"/>
+  <text class="txt" x="635" y="205" font-weight="bold">K585 / MT3608</text>
+  <text class="small" x="635" y="236">VIN: battery OUT</text>
+  <text class="small" x="635" y="266">VOUT: adjust to 5.0 V</text>
+  <text class="small" x="635" y="296">Boost supply rail</text>
+
+  <!-- Controller -->
+  <rect class="box" x="610" y="430" width="335" height="330"/>
+  <text class="txt" x="640" y="468" font-weight="bold">ESP32-S3-Zero</text>
+  <text class="small" x="640" y="505">5V pin: from boost VOUT+</text>
+  <text class="small" x="640" y="535">GND: common ground</text>
+  <text class="small" x="640" y="565">3V3: sensor power only</text>
+  <text class="small" x="640" y="604">GPIO8: SDA</text>
+  <text class="small" x="640" y="632">GPIO9: SCL</text>
+  <text class="small" x="640" y="660">GPIO4: soil analog input</text>
+  <text class="small" x="640" y="688">GPIO5: tank level input</text>
+  <text class="small" x="640" y="716">GPIO12: pump gate drive</text>
+
+  <!-- Sensor connectors -->
+  <rect class="box" x="1100" y="135" width="300" height="145"/>
+  <text class="txt" x="1125" y="170" font-weight="bold">BH1750 GY-302</text>
+  <text class="small" x="1125" y="202">VCC 3V3, GND</text>
+  <text class="small" x="1125" y="230">SDA GPIO8, SCL GPIO9</text>
+  <text class="small" x="1125" y="258">ADDR low: 0x23</text>
+
+  <rect class="box" x="1100" y="320" width="300" height="155"/>
+  <text class="txt" x="1125" y="355" font-weight="bold">Optional BH1750 #2</text>
+  <text class="small" x="1125" y="389">K2374 / BH1750FVI</text>
+  <text class="small" x="1125" y="419">Same I2C bus</text>
+  <text class="small" x="1125" y="449">ADDR high: 0x5C</text>
+
+  <rect class="box" x="1100" y="515" width="300" height="155"/>
+  <text class="txt" x="1125" y="550" font-weight="bold">SHT30/SHT31</text>
+  <text class="small" x="1125" y="584">VCC 3V3, GND</text>
+  <text class="small" x="1125" y="614">SDA GPIO8, SCL GPIO9</text>
+  <text class="small" x="1125" y="644">ADDR low: 0x44</text>
+
+  <rect class="box" x="1100" y="710" width="300" height="155"/>
+  <text class="txt" x="1125" y="745" font-weight="bold">BME280 alternative</text>
+  <text class="small" x="1125" y="779">Use instead of SHT if fitted</text>
+  <text class="small" x="1125" y="809">VCC 3V3, GND</text>
+  <text class="small" x="1125" y="839">SDA GPIO8, SCL GPIO9</text>
+
+  <rect class="box" x="70" y="680" width="280" height="135"/>
+  <text class="txt" x="95" y="715" font-weight="bold">Soil moisture sensor</text>
+  <text class="small" x="95" y="750">3-pin connector</text>
+  <text class="small" x="95" y="780">VCC 3V3, GND, AO</text>
+  <text class="small" x="95" y="810">AO to GPIO4 ADC</text>
+
+  <rect class="box" x="70" y="865" width="280" height="120"/>
+  <text class="txt" x="95" y="900" font-weight="bold">Tank level switch</text>
+  <text class="small" x="95" y="935">2-pin sensor/float</text>
+  <text class="small" x="95" y="965">GPIO5 to switch to GND</text>
+
+  <!-- Pump driver -->
+  <rect class="box" x="620" y="855" width="300" height="150"/>
+  <text class="txt" x="645" y="890" font-weight="bold">Pump connector</text>
+  <text class="small" x="645" y="924">DC pump 3-5 V / 200 mA</text>
+  <text class="small" x="645" y="954">P+ to 5 V rail</text>
+  <text class="small" x="645" y="984">P- to MOSFET drain</text>
+
+  <rect class="subtle" x="1010" y="865" width="210" height="130"/>
+  <text class="txt" x="1035" y="900" font-weight="bold">IRLB3034</text>
+  <text class="small" x="1035" y="932">Pin 1: Gate</text>
+  <text class="small" x="1035" y="958">Pin 2/tab: Drain</text>
+  <text class="small" x="1035" y="984">Pin 3: Source</text>
+
+  <rect class="note" x="1270" y="900" width="250" height="110"/>
+  <text class="small" x="1290" y="930" font-weight="bold">Pump protection</text>
+  <text class="tiny" x="1290" y="958">1N5819 diode across pump:</text>
+  <text class="tiny" x="1290" y="980">cathode to +5 V, anode to drain.</text>
+  <text class="tiny" x="1290" y="1002">470 uF + optional 100 nF on 5 V rail.</text>
+
+  <!-- Rails -->
+  <line class="power" x1="840" y1="360" x2="1480" y2="360"/>
+  <text class="rail red" x="1450" y="345">+5 V</text>
+  <line class="power" x1="840" y1="390" x2="1480" y2="390" stroke="#ef6c00"/>
+  <text class="rail red" x="1440" y="414">+3V3</text>
+  <line class="gnd" x1="840" y1="1035" x2="1480" y2="1035"/>
+  <text class="rail black" x="1445" y="1065">GND</text>
+
+  <!-- Power wiring -->
+  <path class="power" d="M330 230 H410"/>
+  <path class="power" d="M540 245 H610"/>
+  <path class="power" d="M870 245 H980 V360" marker-end="url(#arrow-red)"/>
+  <path class="gnd" d="M330 295 H610"/>
+  <path class="gnd" d="M870 295 H980 V1035"/>
+  <path class="power" d="M200 420 V330"/>
+  <path class="gnd" d="M250 420 V330"/>
+  <text class="tiny red" x="345" y="218">OUT+</text>
+  <text class="tiny black" x="345" y="312">OUT-</text>
+
+  <!-- ESP32 power -->
+  <path class="power" d="M945 505 H980 V360"/>
+  <path class="power" d="M945 565 H1000 V390" stroke="#ef6c00"/>
+  <path class="gnd" d="M945 535 H1025 V1035"/>
+
+  <!-- I2C bus -->
+  <path class="i2c" d="M945 604 H1040 V205 H1100"/>
+  <path class="i2c" d="M945 632 H1065 V230 H1100" stroke-dasharray="8 8"/>
+  <path class="i2c" d="M1040 205 V395 H1100"/>
+  <path class="i2c" d="M1065 230 V420 H1100" stroke-dasharray="8 8"/>
+  <path class="i2c" d="M1040 395 V590 H1100"/>
+  <path class="i2c" d="M1065 420 V620 H1100" stroke-dasharray="8 8"/>
+  <path class="i2c" d="M1040 590 V785 H1100"/>
+  <path class="i2c" d="M1065 620 V815 H1100" stroke-dasharray="8 8"/>
+  <text class="tiny green" x="960" y="590">SDA</text>
+  <text class="tiny green" x="960" y="625">SCL dashed</text>
+
+  <!-- Sensor power/gnd taps -->
+  <path class="power" d="M1130 280 V390" stroke="#ef6c00"/>
+  <path class="power" d="M1130 475 V390" stroke="#ef6c00"/>
+  <path class="power" d="M1130 670 V390" stroke="#ef6c00"/>
+  <path class="power" d="M1130 865 V390" stroke="#ef6c00"/>
+  <path class="gnd" d="M1180 280 V1035"/>
+  <path class="gnd" d="M1180 475 V1035"/>
+  <path class="gnd" d="M1180 670 V1035"/>
+  <path class="gnd" d="M1180 865 V1035"/>
+
+  <!-- Analog and level wiring -->
+  <path class="sig" d="M350 780 H485 V660 H610" marker-end="url(#arrow-blue)"/>
+  <path class="power" d="M350 742 H495 V390" stroke="#ef6c00"/>
+  <path class="gnd" d="M350 802 H515 V1035"/>
+
+  <path class="sig" d="M350 940 H470 V688 H610" marker-end="url(#arrow-blue)"/>
+  <path class="gnd" d="M350 965 H515 V1035"/>
+  <path class="power" d="M470 868 V390" stroke="#ef6c00"/>
+  <text class="tiny blue" x="484" y="858">10 k pull-up</text>
+  <line class="sig" x1="455" y1="878" x2="485" y2="878"/>
+  <line class="sig" x1="455" y1="888" x2="485" y2="888"/>
+  <line class="sig" x1="455" y1="898" x2="485" y2="898"/>
+
+  <!-- Pump wiring -->
+  <path class="power" d="M770 855 V360"/>
+  <path class="sig" d="M920 955 H1010"/>
+  <path class="gnd" d="M1115 995 V1035"/>
+  <path class="sig" d="M945 716 H980 V895 H1010" marker-end="url(#arrow-blue)"/>
+  <text class="tiny blue" x="952" y="878">100 ohm gate resistor</text>
+  <line class="sig" x1="980" y1="884" x2="1000" y2="884"/>
+  <line class="sig" x1="980" y1="892" x2="1000" y2="892"/>
+  <line class="sig" x1="980" y1="900" x2="1000" y2="900"/>
+  <path class="gnd" d="M1010 930 H970 V1035"/>
+  <text class="tiny blue" x="930" y="925">10 k pulldown</text>
+
+  <!-- Flyback/cap notes as symbols -->
+  <path class="power" d="M920 920 H1270 V930"/>
+  <path class="sig" d="M920 955 H1270 V980"/>
+  <text class="tiny red" x="1228" y="918">+5 V</text>
+  <text class="tiny blue" x="1225" y="1000">Drain</text>
+
+  <!-- Legend -->
+  <rect class="note" x="70" y="1015" width="620" height="55"/>
+  <text class="tiny" x="90" y="1040">Legend: red = 5 V power, orange-red = 3.3 V sensor power, black = ground, teal = I2C, blue = GPIO/analog/control.</text>
+  <text class="tiny" x="90" y="1060">Suggested pins are chosen from exposed ESP32-S3-Zero GPIOs; change in firmware if you wire different pads.</text>
+</svg>

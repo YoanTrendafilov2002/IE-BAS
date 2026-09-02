@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "PlantWatering")(type "KiCad")(uri "${KIPRJMOD}/PlantWatering.kicad_sym")(options "")(descr "Project-local module symbols"))
+)

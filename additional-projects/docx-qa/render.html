@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>DOCX QA Render</title>
+    <style>
+      html, body { margin: 0; padding: 0; background: #c9cdd2; }
+      #status { position: fixed; top: 8px; left: 8px; z-index: 99; background: white; padding: 6px 10px; font: 12px sans-serif; }
+      #container { padding: 24px 0; }
+      .docx-wrapper { background: #c9cdd2 !important; padding: 0 !important; }
+      .docx-wrapper > section.docx { margin: 0 auto 24px !important; box-shadow: 0 2px 12px #5558; }
+      @media print {
+        html, body, #container, .docx-wrapper { background: white !important; margin: 0 !important; padding: 0 !important; }
+        #status { display: none !important; }
+        .docx-wrapper > section.docx { margin: 0 !important; box-shadow: none !important; break-after: page; }
+      }
+    </style>
+    <script src="/node_modules/jszip/dist/jszip.min.js"></script>
+    <script src="/node_modules/docx-preview/dist/docx-preview.min.js"></script>
+  </head>
+  <body>
+    <div id="status">Rendering…</div>
+    <div id="container"></div>
+    <script>
+      (async () => {
+        const response = await fetch('/EarthCARE_Tracker_Calculations_and_Operations.docx');
+        const buffer = await response.arrayBuffer();
+        await docx.renderAsync(buffer, document.getElementById('container'), null, {
+          inWrapper: true,
+          breakPages: true,
+          renderHeaders: true,
+          renderFooters: true,
+          renderFootnotes: true,
+          renderEndnotes: true,
+          useBase64URL: true,
+        });
+        document.getElementById('status').textContent = 'READY';
+        document.body.dataset.ready = 'true';
+      })().catch((error) => {
+        document.getElementById('status').textContent = String(error);
+      });
+    </script>
+  </body>
+</html>

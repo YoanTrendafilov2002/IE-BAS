@@ -1,0 +1,5 @@
+[main]
+doc -s;
+doc -o "C:\Users\user\Downloads\BSC-all.opju";
+run -pyf "C:\Users\user\Documents\Codex\2026-06-05\can-you-make-a-single-graph\work\origin_embedded_extract.py";
+exit;

@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AERONET Outputs - Open This First</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #f6f8fb;
+  color: #172234;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+header {
+  padding: 22px 28px 14px;
+  background: #fff;
+  border-bottom: 1px solid #d9e0ea;
+}
+h1 {
+  margin: 0 0 6px;
+  font-size: 30px;
+  letter-spacing: 0;
+}
+p {
+  margin: 0;
+  color: #506078;
+  line-height: 1.45;
+}
+main {
+  padding: 18px 28px 28px;
+  display: grid;
+  gap: 14px;
+  max-width: 1100px;
+}
+section {
+  background: #fff;
+  border: 1px solid #d9e0ea;
+  border-radius: 8px;
+  padding: 16px;
+}
+h2 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+.link-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+a.card {
+  display: block;
+  min-height: 84px;
+  padding: 12px;
+  border: 1px solid #d9e0ea;
+  border-radius: 6px;
+  color: #172234;
+  text-decoration: none;
+  background: #fff;
+}
+a.card strong {
+  display: block;
+  margin-bottom: 4px;
+}
+a.card span {
+  display: block;
+  color: #506078;
+  font-size: 13px;
+  line-height: 1.35;
+}
+a.card.primary {
+  border-color: #26364e;
+  background: #eef3f9;
+}
+a.card.disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+.selector-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: start;
+  margin-bottom: 10px;
+}
+.filter-block {
+  margin-top: 12px;
+}
+.filter-block h3 {
+  margin: 0 0 8px;
+  font-size: 14px;
+}
+.period-grid button,
+.quick-actions button {
+  min-height: 34px;
+  border: 1px solid #d9e0ea;
+  border-radius: 6px;
+  background: #fff;
+  color: #172234;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+.period-grid button.active {
+  background: #26364e;
+  border-color: #26364e;
+  color: #fff;
+}
+.period-grid button:disabled {
+  background: #f2f4f7;
+  border-color: #e4e8ee;
+  color: #a2adbc;
+  cursor: default;
+  font-weight: 500;
+}
+.period-selector-wrap {
+  overflow-x: auto;
+  margin-top: 10px;
+  padding-bottom: 4px;
+}
+.period-grid {
+  min-width: 840px;
+  display: grid;
+  grid-template-columns: 82px repeat(12, minmax(48px, 1fr));
+  gap: 6px;
+  align-items: center;
+}
+.period-grid .month-heading {
+  color: #506078;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+}
+.period-grid .year-toggle {
+  background: #eef3f9;
+}
+.selector-legend {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #506078;
+}
+.quick-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.quick-actions button {
+  width: auto;
+  padding: 6px 10px;
+  background: #eef3f9;
+}
+.selector-status {
+  color: #506078;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: right;
+}
+.selector-table-wrap {
+  margin-top: 12px;
+  overflow-x: auto;
+}
+.selector-table {
+  min-width: 980px;
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #777;
+  font-size: 12px;
+}
+.selector-table caption {
+  caption-side: top;
+  text-align: left;
+  color: #172234;
+  line-height: 1.45;
+  padding: 0 0 8px;
+}
+.selector-table th,
+.selector-table td {
+  border: 1px solid #8a8a8a;
+  padding: 5px 7px;
+  text-align: center;
+  white-space: nowrap;
+}
+.selector-table th {
+  background: #4caf2d;
+  color: #102010;
+  font-weight: 800;
+}
+.selector-table td {
+  background: #fff;
+  color: #172234;
+}
+.selector-table td:first-child,
+.selector-table th:first-child {
+  text-align: left;
+}
+code {
+  background: #eef2f7;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+ul {
+  margin: 8px 0 0;
+  padding-left: 20px;
+  color: #506078;
+}
+@media (max-width: 760px) {
+  main, header { padding-left: 14px; padding-right: 14px; }
+  .link-grid { grid-template-columns: 1fr; }
+  .selector-head { display: grid; }
+  .selector-status { text-align: left; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>AERONET Outputs</h1>
+  <p>Current version: <code>v2026-08-31_statistics-retrieval</code>. Default rule: <code>2022-10-21</code> is excluded.</p>
+</header>
+<main>
+  <section>
+    <div class="selector-head">
+      <div>
+        <h2>Data Selector</h2>
+        <p>Choose each calendar month to keep or remove. The graph buttons below open with exactly that selection applied everywhere.</p>
+      </div>
+      <div class="selector-status" id="selectorStatus"></div>
+    </div>
+    <div class="quick-actions">
+      <button id="selectAllPeriods" type="button">Keep all</button>
+      <button id="clearAllPeriods" type="button">Remove all</button>
+      <button id="selectSummerPeriods" type="button">Keep all summers</button>
+      <button id="selectWinterPeriods" type="button">Keep all winters</button>
+    </div>
+    <div class="period-selector-wrap">
+      <div class="period-grid" id="periodSelector"></div>
+    </div>
+    <div class="selector-legend">Dark = kept in calculations. Pale = removed. Grey = no daily data. Press a year to keep or remove that entire year.</div>
+  </section>
+  <section id="statistics">
+    <h2>Statistics</h2>
+    <div class="link-grid">
+      <a class="card primary selector-link" href="AOD_AE_frequency_distributions_2020-2026.html#individual-statistics">
+        <strong>Individual AOD and AE descriptive statistics</strong>
+        <span>Every available AOD and AE channel shown separately with n, mean, standard deviation, median, minimum, maximum, and skewness.</span>
+      </a>
+      <a class="card selector-link" href="AOD440_AE440-870_interactive_seasonal_scatter_2020-2026.html#annual-statistics">
+        <strong>Annual AOD440 and AE440/870 statistics</strong>
+        <span>Separate annual bar graphs with standard-deviation whiskers and a daily-mean or individual-measurement basis.</span>
+      </a>
+      <a class="card selector-link" href="AOD_AE_frequency_distributions_2020-2026.html#annual-statistics">
+        <strong>Annual AOD500 and AE380/500 statistics</strong>
+        <span>Separate annual bar graphs with standard-deviation whiskers and a daily-mean or individual-measurement basis.</span>
+      </a>
+      <a class="card selector-link" href="AERONET_SSA_FMF_SDA_statistics_2020-2026.html#retrieval-distributions">
+        <strong>SSA, FMF, AODf500 and AODc500 statistics</strong>
+        <span>Separate interactive monthly, seasonal, annual, and year-season distributions with descriptive tables.</span>
+      </a>
+    </div>
+  </section>
+  <section>
+    <div class="selector-table-wrap">
+      <table class="selector-table">
+        <caption><strong>Similar daily mean table.</strong> AERONET daily mean values from this dataset, filtered by the selected calendar months and sorted by highest AOD<sub>500</sub>. Fine/coarse and inversion columns are parsed from matching SDA and inversion Excel files when available.</caption>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>AOD<sub>440</sub></th>
+            <th>AOD<sub>500</sub></th>
+            <th>AOD<sub>f500</sub></th>
+            <th>AOD<sub>c500</sub></th>
+            <th>AE<sub>440/870</sub></th>
+            <th>AE<sub>380/500</sub></th>
+            <th>SF (%)</th>
+            <th>DR<sub>440</sub></th>
+            <th><em>n</em><sub>r440</sub></th>
+          </tr>
+        </thead>
+        <tbody id="similarTableRows"></tbody>
+      </table>
+    </div>
+  </section>
+  <section>
+    <h2>Press This For The Main Current Graph</h2>
+    <div class="link-grid">
+      <a class="card primary selector-link" href="AOD440_AE440-870_interactive_seasonal_scatter_2020-2026.html">
+        <strong>Main interactive scatter + annual bar graphs</strong>
+        <span>Seasonal scatter, aerosol categories, composition margins, overall means, and annual AOD/AE bar graphs filtered by the selector above.</span>
+      </a>
+      <a class="card selector-link" href="AOD_AE_frequency_distributions_2020-2026.html">
+        <strong>Frequency distributions</strong>
+        <span>AOD and AE histograms by wavelength/pair with exact calendar-month selection, cumulative percent, all-channel descriptive statistics, and AOD500/AE380-500 annual means.</span>
+      </a>
+      <a class="card selector-link" href="aeronet_aod_ae_dashboard_no_2022-10-21.html">
+        <strong>AOD/AE dashboard without 2022-10-21</strong>
+        <span>Daily, monthly, seasonal and yearly dashboard with the specified date excluded.</span>
+      </a>
+      <a class="card selector-link" href="versions/v2026-08-31_statistics-retrieval/AOD440_AE440-870_interactive_seasonal_scatter_2020-2026.html">
+        <strong>Frozen snapshot of current main graph</strong>
+        <span>Archived copy of the accepted current version.</span>
+      </a>
+    </div>
+  </section>
+  <section>
+    <h2>Version Control Files</h2>
+    <div class="link-grid">
+      <a class="card" href="VERSION_LOG.md">
+        <strong>Version log</strong>
+        <span>Human-readable change history and versioning workflow.</span>
+      </a>
+      <a class="card" href="versions/v2026-08-31_statistics-retrieval/manifest.json">
+        <strong>Current version manifest</strong>
+        <span>Machine-readable list of included files and default data rules.</span>
+      </a>
+    </div>
+  </section>
+  <section>
+    <h2>Rules Going Forward</h2>
+    <ul>
+      <li>Use files in <code>outputs/</code> as the latest editable working versions.</li>
+      <li>Accepted versions are archived under <code>outputs/versions/</code>.</li>
+      <li>Only July 2020 scans later worksheets and retains partial-channel rows; every other month uses worksheet 1.</li>
+      <li><code>2022-10-21</code> stays excluded unless raw/original output is explicitly requested.</li>
+    </ul>
+  </section>
+</main>
+<script src="open_first_daily_table_data.js"></script>
+<script>
+const months = [
+  [1, "Jan"], [2, "Feb"], [3, "Mar"], [4, "Apr"], [5, "May"], [6, "Jun"],
+  [7, "Jul"], [8, "Aug"], [9, "Sep"], [10, "Oct"], [11, "Nov"], [12, "Dec"]
+];
+const dailyRows = window.AERONET_DAILY_TABLE || [];
+const availablePeriods = Array.from(new Set(dailyRows.map(row => String(row.iso).slice(0, 7)))).sort();
+const availablePeriodSet = new Set(availablePeriods);
+const years = Array.from(new Set(availablePeriods.map(period => Number(period.slice(0, 4))))).sort((a, b) => a - b);
+const periodStorageKey = "aeronet-open-first-calendar-periods-v1";
+let selectedPeriods = new Set(loadPeriods());
+
+function loadPeriods() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(periodStorageKey) || "null");
+    if (Array.isArray(saved)) {
+      return saved.map(String).filter(value => availablePeriodSet.has(value));
+    }
+  } catch (_) {}
+  return availablePeriods;
+}
+
+function selectedPeriodText() {
+  if (selectedPeriods.size === availablePeriods.length) return `All ${availablePeriods.length} calendar months kept`;
+  if (!selectedPeriods.size) return "No calendar months kept";
+  const selected = Array.from(selectedPeriods).sort();
+  if (selected.length <= 6) return `Kept: ${selected.join(", ")}`;
+  return `${selected.length} of ${availablePeriods.length} calendar months kept`;
+}
+
+function selectionQuery() {
+  if (selectedPeriods.size === availablePeriods.length) return "";
+  return `periods=${Array.from(selectedPeriods).sort().join(",")}`;
+}
+
+function linkWithSelection(href) {
+  const [pathAndQuery, hash = ""] = href.split("#");
+  const [path] = pathAndQuery.split("?");
+  const query = selectionQuery();
+  return `${path}${query ? `?${query}` : ""}${hash ? `#${hash}` : ""}`;
+}
+
+function updateLinks() {
+  const disabled = selectedPeriods.size === 0;
+  document.querySelectorAll(".selector-link").forEach(link => {
+    if (!link.dataset.baseHref) link.dataset.baseHref = link.getAttribute("href");
+    link.setAttribute("href", linkWithSelection(link.dataset.baseHref));
+    link.classList.toggle("disabled", disabled);
+  });
+  document.getElementById("selectorStatus").textContent = disabled
+    ? "Keep at least one calendar month to open filtered graphs."
+    : selectedPeriodText();
+  renderSimilarTable();
+  localStorage.setItem(periodStorageKey, JSON.stringify(Array.from(selectedPeriods)));
+}
+
+function renderSimilarTable() {
+  const holder = document.getElementById("similarTableRows");
+  const valueOrUnavailable = value => value || "Unavailable";
+  const rows = dailyRows
+    .filter(row => selectedPeriods.has(String(row.iso).slice(0, 7)))
+    .sort((a, b) => b.aod500Mean - a.aod500Mean)
+    .slice(0, 25);
+  if (!rows.length) {
+    holder.innerHTML = `<tr><td colspan="10">No daily data for the selected calendar months.</td></tr>`;
+    return;
+  }
+  holder.innerHTML = rows.map(row => `
+    <tr>
+      <td>${row.date}</td>
+      <td>${row.aod440}</td>
+      <td>${row.aod500}</td>
+      <td>${valueOrUnavailable(row.aodf500)}</td>
+      <td>${valueOrUnavailable(row.aodc500)}</td>
+      <td>${row.ae440870}</td>
+      <td>${row.ae380500}</td>
+      <td>${valueOrUnavailable(row.sf)}</td>
+      <td>${valueOrUnavailable(row.dr440)}</td>
+      <td>${valueOrUnavailable(row.nr440)}</td>
+    </tr>
+  `).join("");
+}
+
+function makePeriodButton(text, period, enabled = true) {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.textContent = text;
+  button.disabled = !enabled;
+  if (period && selectedPeriods.has(period)) button.classList.add("active");
+  if (period) {
+    button.title = enabled ? `${period}: ${selectedPeriods.has(period) ? "kept" : "removed"}` : `${period}: no daily data`;
+    button.addEventListener("click", () => {
+      if (selectedPeriods.has(period)) selectedPeriods.delete(period);
+      else selectedPeriods.add(period);
+      renderPeriodButtons();
+      updateLinks();
+    });
+  }
+  return button;
+}
+
+function renderPeriodButtons() {
+  const holder = document.getElementById("periodSelector");
+  const cells = [document.createElement("span")];
+  months.forEach(([, label]) => {
+    const heading = document.createElement("span");
+    heading.className = "month-heading";
+    heading.textContent = label;
+    cells.push(heading);
+  });
+  years.forEach(year => {
+    const yearPeriods = availablePeriods.filter(period => period.startsWith(`${year}-`));
+    const allYearKept = yearPeriods.every(period => selectedPeriods.has(period));
+    const yearButton = makePeriodButton(String(year), null);
+    yearButton.className = `year-toggle${allYearKept ? " active" : ""}`;
+    yearButton.title = `${allYearKept ? "Remove" : "Keep"} all available months in ${year}`;
+    yearButton.addEventListener("click", () => {
+      yearPeriods.forEach(period => allYearKept ? selectedPeriods.delete(period) : selectedPeriods.add(period));
+      renderPeriodButtons();
+      updateLinks();
+    });
+    cells.push(yearButton);
+    months.forEach(([month, label]) => {
+      const period = `${year}-${String(month).padStart(2, "0")}`;
+      cells.push(makePeriodButton(label, period, availablePeriodSet.has(period)));
+    });
+  });
+  holder.replaceChildren(...cells);
+}
+
+function setPeriods(values) {
+  selectedPeriods = new Set(values.filter(value => availablePeriodSet.has(value)));
+  renderPeriodButtons();
+  updateLinks();
+}
+
+document.getElementById("selectAllPeriods").addEventListener("click", () => setPeriods(availablePeriods));
+document.getElementById("clearAllPeriods").addEventListener("click", () => setPeriods([]));
+document.getElementById("selectSummerPeriods").addEventListener("click", () => setPeriods(availablePeriods.filter(period => [6, 7, 8].includes(Number(period.slice(5, 7))))));
+document.getElementById("selectWinterPeriods").addEventListener("click", () => setPeriods(availablePeriods.filter(period => [12, 1, 2].includes(Number(period.slice(5, 7))))));
+document.querySelectorAll(".selector-link").forEach(link => {
+  link.addEventListener("click", event => {
+    if (!selectedPeriods.size) event.preventDefault();
+  });
+});
+renderPeriodButtons();
+updateLinks();
+</script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+v2026-08-31_statistics-retrieval
+
+Default exclusion rule:
+2022-10-21 is excluded from regenerated AOD/AE outputs unless the user explicitly asks for raw/original data.

@@ -1,0 +1,218 @@
+UPDATED ELIMEX PART LIST - TU STORE VERSION
+Checked: 2026-06-18
+Store checked: Sofia Technical University Elimex branch
+
+Goal:
+Use the K2402 irrigation kit as a donor kit for the pump/soil/hose/prototype
+parts, while keeping the final electronics as ESP32 + LiPo + MOSFET.
+
+
+BUY FROM ELIMEX TU STORE
+=========================
+
+1. K2402 automatic irrigation educational kit
+   Qty: 1
+   Elimex code: 94243
+   TU stock: 1
+   Total Elimex stock: 82
+   Price checked: 30.63 BGN
+   URL:
+   https://elimex.bg/product/94243-kit-k2402-obrazovatelen-komplekt-4-posochna-avtomatichna-napoitelna-sistema-sas-senzori-za-vlajnost-napochvata-i-razvoina-platka-uno-r3
+
+   Use from this kit:
+   - 4x capacitive soil moisture sensors V1.2
+   - 4x submersible water pumps
+   - 2x 1 m hose
+   - breadboard
+   - jumper wires
+   - plastic box, if useful
+
+   Do not use for final plant-node electronics:
+   - UNO R3 board
+   - 4-channel relay module
+   - AA battery holder
+
+
+2. K2156 GY-302 BH1750 light sensor
+   Qty: 1
+   Elimex code: 75631
+   TU stock: 1
+   Total Elimex stock: 8
+   Price checked: 2.51 BGN
+   URL:
+   https://elimex.bg/product/75631-kit-k2156-senzor-za-osvetenost-gy-302-bh1750
+
+
+3. K548 USB-C Li-ion/LiPo charger
+   Qty: 1
+   Elimex code: 82658
+   TU stock: 4
+   Total Elimex stock: 235
+   Price checked: 1.48 BGN
+   URL:
+   https://elimex.bg/product/82658-kit-k548-zarqdno-za-li-ion-li-po-baterii-usb-c
+
+
+4. K585 adjustable DC/DC boost converter
+   Qty: 1
+   Elimex code: 86296
+   TU stock: 2
+   Total Elimex stock: 41
+   Price checked: 1.48 BGN
+   URL:
+   https://elimex.bg/product/86296-kit-k585-konvertor-povishavasht-dc-dc-uvh-2v-24v-uizh-5v-28v
+
+   Note:
+   Set output to 5.0 V before connecting ESP32 or pump.
+
+
+5. XSL-4510-P float level switch
+   Qty: 1
+   Elimex code: 91654
+   TU stock: 1
+   Total Elimex stock: 27
+   Price checked: 3.50 BGN
+   URL:
+   https://elimex.bg/product/91654-datchik-za-nivo-xsl-4510-p
+
+   Note:
+   Use as tank-low switch with 10k pull-up to 3.3 V and GPIO input.
+   It is NC, so verify wet/dry polarity after mounting.
+
+
+6. IRLB3034 logic-level N-MOSFET
+   Qty: 1
+   Elimex code: 64834
+   TU stock: 2
+   Total Elimex stock: 5
+   Price checked: 3.53 BGN
+   URL:
+   https://elimex.bg/product/64834-irlb3034-to-220
+
+   Replaces:
+   - IRLZ44N
+
+   Note:
+   Good substitute for low-side pump switching.
+   Check pinout before soldering.
+
+
+7. 1N5819 diode
+   Qty: 1
+   Elimex code: 28885
+   TU stock: 6
+   Total Elimex stock: 203
+   Price checked: 0.05 BGN
+   URL:
+   https://elimex.bg/product/28885-1n5819-do-41
+
+   Use:
+   Flyback diode across pump.
+
+
+8. 470uF / 16V electrolytic capacitor
+   Qty: 1
+   Elimex code: 46773
+   TU stock: 5
+   Total Elimex stock: 389
+   Price checked: 0.15 BGN
+   URL:
+   https://elimex.bg/product/46773-c470uf16v-vn-8x12-low
+
+   Use:
+   Bulk capacitor across boosted 5 V pump rail and GND.
+
+
+9. JST XH-2.54-F 2-pin cable, 0.2 m
+   Qty: 2
+   Elimex code: 91533
+   TU stock: 4
+   Total Elimex stock: 877
+   Price checked: 0.46 BGN each
+   URL:
+   https://elimex.bg/product/91533-saedinitel-jst-xh-2.54-f-2pin-s-kabel-0.2m
+
+   Use:
+   Pump and tank-level wiring, if the physical connector style is convenient.
+
+
+10. JST-SM 2-pin male/female cable kit, 0.2 m
+    Qty: 1 or 2
+    Elimex code: 88758
+    TU stock: 17
+    Total Elimex stock: 1532
+    Price checked: 0.97 BGN each
+    URL:
+    https://elimex.bg/product/88758-saedinitel-jst-sm-2-pin-komplekt-s-kabel-0.2m-komplekt-majko-jensko
+
+    Use:
+    Practical alternative connector for pump/tank disconnects.
+    Not the same footprint as JST-XH.
+
+
+DO NOT BUY SEPARATELY IF BUYING K2402
+=====================================
+
+1. K2112 soil moisture sensor
+   Original code: 74854
+   Reason:
+   K2402 already includes 4 capacitive soil moisture sensors, which are better
+   for this project than the resistive K2112 probe.
+
+2. Standalone 3-5 V / 200 mA pump
+   Original code: 88738
+   Reason:
+   K2402 already includes 4 submersible water pumps.
+
+3. IRLZ44N
+   Original code: 36316
+   Reason:
+   TU stock was 0. Use IRLB3034 instead.
+
+4. K010 liquid-level controller
+   Original code: 41823
+   Reason:
+   It needs 10-16 V and is not suitable for the 3.7 V / 5 V ESP32 plant node.
+   Use XSL-4510-P instead.
+
+5. K2402 relay module
+   Reason:
+   It is included in the kit, but the final design should use MOSFET low-side
+   switching for the pump, not the relay board.
+
+
+STILL NEEDED FROM ARDBOARD / OTHER SOURCE
+=========================================
+
+1. ESP32-S3 Zero mini development board
+2. Li-Po 103450 3.7 V 2000 mAh battery
+3. SHT30/SHT31 air temperature/humidity sensor with housing/cable
+
+
+SMALL GENERIC PARTS STILL NEEDED
+================================
+
+1. 100 ohm resistor
+   Use: ESP32 pump GPIO to MOSFET gate.
+
+2. 10k resistor
+   Use: MOSFET gate pulldown.
+
+3. 10k resistor
+   Use: tank level switch pull-up to 3.3 V.
+
+4. Two 100k resistors
+   Use: battery voltage divider into ESP32 ADC.
+
+5. Heat shrink, wire, terminal blocks, perfboard, screws/spacers.
+
+
+SUMMARY
+=======
+
+Best TU-store strategy:
+- Buy K2402 for soil sensors, pumps, hose, breadboard, and jumper wires.
+- Buy K2156, K548, K585, XSL-4510-P, IRLB3034, 1N5819, 470uF capacitor,
+  and connector cables separately.
+- Keep the final circuit as ESP32 + LiPo charger + boost converter + MOSFET.
+- Do not redesign around the UNO or relay board from K2402.

@@ -1,0 +1,9 @@
+*.kicad_sch text eol=lf
+*.kicad_pro text eol=lf
+*.kicad_sym text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.pdf binary
+*.png binary
+*.svg text eol=lf
