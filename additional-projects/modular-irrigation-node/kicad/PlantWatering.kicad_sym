@@ -1,6 +1,6 @@
 (kicad_symbol_lib
 	(version 20251024)
-	(generator "codex")
+	(generator "eeschema")
 	(generator_version "2.0")
 (symbol "Battery_2_Right"
 			(pin_names (offset 1.016))

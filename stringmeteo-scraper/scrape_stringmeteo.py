@@ -17,9 +17,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import TimeoutException
 
 
-# =========================
-# НАСТРОЙКИ — ПИПАШ САМО ТУК
-# =========================
+# Настройки
 START_DATE = "2024-02-03"
 END_DATE   = "2024-07-22"
 
@@ -97,9 +95,7 @@ def safe_get(driver, url: str):
             pass
 
 
-# =========================
-# CONSENT (IAB TCF)
-# =========================
+# Consent handling (IAB TCF)
 def accept_tcf_consent(driver) -> None:
     consent_btn_xpath = "//*[self::button or self::a][normalize-space(.)='Consent']"
 

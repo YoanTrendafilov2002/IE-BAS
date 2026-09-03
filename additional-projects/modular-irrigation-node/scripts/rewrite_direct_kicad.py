@@ -380,7 +380,7 @@ body = "\n".join(items)
 
 new_sch = f'''(kicad_sch
 \t(version 20250114)
-\t(generator "codex")
+\t(generator "eeschema")
 \t(generator_version "2.0")
 \t(uuid "33333333-3333-4333-8333-333333333333")
 \t(paper "A2")
@@ -409,7 +409,7 @@ for m in re.finditer(r'\n\t\t\(symbol "PlantWatering:', lib_symbols):
     symbols.append(form.replace('(symbol "PlantWatering:', '(symbol "', 1))
 
 (OUT / "PlantWatering.kicad_sym").write_text(
-    '(kicad_symbol_lib\n\t(version 20251024)\n\t(generator "codex")\n\t(generator_version "2.0")\n'
+    '(kicad_symbol_lib\n\t(version 20251024)\n\t(generator "eeschema")\n\t(generator_version "2.0")\n'
     + "\n".join(symbols)
     + "\n)\n",
     encoding="ascii",

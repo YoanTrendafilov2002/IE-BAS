@@ -1,6 +1,6 @@
 # Modular Irrigation Plant Node
 
-This repository is a handoff package for a diploma prototype: a battery-powered ESP32 plant irrigation and monitoring node.
+This repository contains a diploma prototype for a battery-powered ESP32 plant irrigation and monitoring node.
 
 The current design uses:
 
@@ -15,7 +15,7 @@ The current design uses:
 
 ## Start Here
 
-Read [CODEX_START_HERE.md](CODEX_START_HERE.md) first. It explains the current decisions, what is already done, and what should not be changed casually.
+Read [PROJECT_NOTES.md](PROJECT_NOTES.md) first for the current design decisions, completed work, and next tasks.
 
 ## Key Files
 

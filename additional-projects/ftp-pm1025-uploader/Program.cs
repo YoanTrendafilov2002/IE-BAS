@@ -220,7 +220,7 @@ internal static class Program
             }
             catch
             {
-                // Keep retrying uploads even if the diagnostic log is unavailable.
+                // A logging failure must not stop later upload attempts.
             }
         }
 

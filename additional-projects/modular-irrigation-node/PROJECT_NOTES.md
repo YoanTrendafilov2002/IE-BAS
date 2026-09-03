@@ -1,6 +1,6 @@
-# Codex Handoff
+# Project Notes
 
-This repository is intended to be readable by a fresh Codex session on another computer.
+This file records the prototype state, design choices, and next tasks.
 
 ## Current State
 
@@ -62,7 +62,7 @@ KiCad CLI 10.0.3 ran ERC successfully:
 0 Warnings
 ```
 
-## Next Best Tasks
+## Next Tasks
 
 1. Confirm the exact ESP32-S3 Zero board pin labels before soldering.
 2. Bench-test only the power path first.
@@ -73,7 +73,7 @@ KiCad CLI 10.0.3 ran ERC successfully:
 7. Verify XSL-4510-P tank switch polarity after mounting.
 8. Only then start firmware logic and app/dashboard work.
 
-## Do Not Lose These Safety Rules
+## Safety Rules
 
 - Pump current must not pass through ESP32 GPIO.
 - Never feed 5 V into ESP32 GPIO.

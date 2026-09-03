@@ -116,7 +116,7 @@ int main() {
         return 1;
     }
 
-    // Expected order from your message:
+    // Expected field order:
     // R Wifi Dn Dm Dx Sn Sm Sx Ta Ua Pa Rc Rd Ri Hc Hd Hi Th Vh Vs Vr Unixtime
     const char* keys[] = {
         "R","Wifi","Dn","Dm","Dx","Sn","Sm","Sx","Ta","Ua","Pa",
@@ -137,9 +137,9 @@ int main() {
         }
         if (iM22 < 0) continue;
 
-        // Your flattened line looks like:
+        // Flattened input format:
         // G97 R M22 0 870 86 288 292 ...
-        // So after M22 there is a "flag" first, then fields begin.
+        // M22 is followed by a status flag and then the data fields.
         int i = iM22 + 1;
         if (i >= (int)t.size()) continue;
 

@@ -1,10 +1,5 @@
-# BarcelonaData_old_working.py
-# Fetch MONARCH dust data from AEMET THREDDS (OPeNDAP ASCII) and write daily JSON outputs.
-# - Period: configured at top (daily model run at 00 UTC)
-# - Point: configured at top (lat/lon)
-# - Subset: ±0.5° (11x11 grid at 0.1° resolution), then bilinear interpolation to the point
-# - Auth: HTTP Basic (from user_config.json)
-# - SSL: default verify=False to avoid CERTIFICATE_VERIFY_FAILED on Windows
+# Fetch MONARCH dust data from AEMET THREDDS and write daily JSON files.
+# Values are interpolated from an 11x11 grid around the configured point.
 
 from __future__ import annotations
 
@@ -21,9 +16,7 @@ import urllib3
 from requests.auth import HTTPBasicAuth
 
 
-# =========================
-# USER SETTINGS (EDIT HERE)
-# =========================
+# Configuration
 
 POINT_LAT = 42.653733
 POINT_LON = 23.387372
@@ -38,7 +31,7 @@ VERIFY_SSL = False          # set True if you have proper CA chain
 OUTPUT_DIR = "output_json"  # relative to this script
 USER_CONFIG_PATH = "user_config.json"
 
-# Variables to fetch:
+# Requested variables
 VARS_2D = [
     "dust_ext_sfc",
     "dust_load",
@@ -48,13 +41,11 @@ VARS_2D = [
 ]
 VAR_4D = "sconc_dust"  # [time][lev][lat][lon]
 
-# Dataset filename pattern (the one that worked for you in 2025-12):
+# Dataset filename pattern
 DATASET_NAME = "{yyyymmdd}00_3H_SDSWAS_MONARCH-fct.nc"
 
 
-# =========================
-# GRID (from your ASCII dump)
-# =========================
+# Grid dimensions
 GRID_LAT0 = -10.95
 GRID_LON0 = -62.95
 GRID_DLAT = 0.10
@@ -63,9 +54,7 @@ GRID_NLAT = 825
 GRID_NLON = 1650
 
 
-# =========================
 # Helpers
-# =========================
 
 def parse_yyyy_mm_dd(s: str) -> date:
     return datetime.strptime(s, "%Y-%m-%d").date()
@@ -164,9 +153,7 @@ def build_ascii_url(run_day: date, i0: int, i1: int, j0: int, j1: int) -> str:
     return base + "?" + ",".join(encoded)
 
 
-# =========================
 # DAP ASCII parsing
-# =========================
 
 _float_re = re.compile(r"[-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?")
 
@@ -266,9 +253,7 @@ def parse_dap_ascii(text: str, ni: int, nj: int) -> ParsedDAP:
     return ParsedDAP(vars2d=vars2d, sconc=sconc, time=time, lev=lev, lat=lat, lon=lon)
 
 
-# =========================
 # Bilinear interpolation
-# =========================
 
 def bilinear_at(grid2d: List[List[float]], lat_vec: List[float], lon_vec: List[float], lat: float, lon: float) -> float:
     if lat <= lat_vec[0]:
@@ -306,9 +291,7 @@ def bilinear_at(grid2d: List[List[float]], lat_vec: List[float], lon_vec: List[f
     return v0 * (1 - tx) + v1 * tx
 
 
-# =========================
-# Main
-# =========================
+# Entry point
 
 def main() -> None:
     script_dir = Path(__file__).resolve().parent

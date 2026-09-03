@@ -1,10 +1,6 @@
 ﻿// BarcelonaGrapher.cpp
-// Windows-only, single-file.
-// - Reads MONARCH daily JSON produced by your BarcelonaDust script (may contain NaN tokens)
-// - Exports:
-//    1) dust_load vs forecast_hour (0..72h only) -> CSV + PNG
-//    2) sconc_dust heatmap (forecast_hour vs level_m, starting at 1000 m) -> CSV + PNG
-// - Calls gnuplot to render plots
+// Generates CSV and PNG plots from MONARCH daily JSON data.
+// Supports dust-load time series and dust-concentration heatmaps.
 //
 // Build (MSVC):  cl /std:c++17 /O2 BarcelonaGrapher.cpp
 // Run:           BarcelonaGrapher.exe
@@ -27,25 +23,21 @@
 
 namespace fs = std::filesystem;
 
-// ============================
-// CONFIG (edit if needed)
-// ============================
+// Configuration
 static const fs::path SRC_DIR = "output_json";
 static const fs::path OUT_DIR = "DustGraphs";
 
-// Only plot up to 72 hours
+// Limit forecasts to 72 hours.
 static constexpr double MAX_FORECAST_H = 72.0;
 
-// Heatmap should start at 1000 m
+// Start the heatmap at 1000 m.
 static constexpr double HEAT_MIN_LEVEL_M = 1000.0;
 
-// If value is missing/null (after NaN sanitization), emit 0 in heatmap
+// Represent missing heatmap values as zero.
 static constexpr bool HEAT_EMIT_ZERO_FOR_MISSING = true;
 
-// ============================
-// Minimal JSON parser (embedded)
+// Embedded JSON parser
 // Supports: null, bool, number, string, array, object.
-// ============================
 
 namespace minijson {
 
@@ -108,7 +100,7 @@ namespace minijson {
                     case 'r': s.push_back('\r'); break;
                     case 't': s.push_back('\t'); break;
                     case 'u': {
-                        // minimal \u handling: read 4 hex digits, store as '?'
+                        // Replace unsupported Unicode escapes with '?'.
                         for (int i = 0; i < 4; i++) {
                             if (!std::isxdigit(static_cast<unsigned char>(p[i]))) { err = "bad \\u escape"; return false; }
                         }
@@ -252,9 +244,7 @@ namespace minijson {
 
 } // namespace minijson
 
-// ============================
 // Helpers
-// ============================
 
 static std::string read_text_file(const fs::path& p) {
     std::ifstream in(p, std::ios::binary);
@@ -265,7 +255,7 @@ static std::string read_text_file(const fs::path& p) {
 }
 
 // Replace NaN/Infinity tokens (not valid JSON) with null.
-// Also handles common variants that appear in your file.
+// Handles common non-standard variants found in model output.
 static void sanitize_non_json_numbers(std::string& s) {
     auto replace_all = [&](const std::string& a, const std::string& b) {
         size_t pos = 0;
@@ -275,11 +265,11 @@ static void sanitize_non_json_numbers(std::string& s) {
         }
         };
 
-    // Most common in your JSON:  "250.0": NaN
+    // Common form: "250.0": NaN
     replace_all(": NaN", ": null");
     replace_all(":NaN", ":null");
 
-    // Rare but safe
+    // Handle signed infinity tokens as well.
     replace_all(": Infinity", ": null");
     replace_all(":Infinity", ":null");
     replace_all(": -Infinity", ": null");
@@ -312,8 +302,7 @@ static bool forecast_ok(const minijson::Value& fh) {
     return fh.is_number() && (fh.num >= 0.0) && (fh.num <= MAX_FORECAST_H + 1e-9);
 }
 
-// For gnuplot pm3d to work reliably with scattered triples, use:
-// set pm3d map; set dgrid3d; splot ... with pm3d
+// pm3d requires a gridded surface for scattered triples.
 static std::string make_heat_gnuplot(const fs::path& out_png, const fs::path& csv, const std::string& date) {
     std::ostringstream gp;
     gp << "set terminal pngcairo size 1400,800 font 'Consolas,12'\n";
@@ -329,14 +318,12 @@ static std::string make_heat_gnuplot(const fs::path& out_png, const fs::path& cs
     gp << "set yrange [" << HEAT_MIN_LEVEL_M << ":*]\n";
     gp << "set ticslevel 0\n";
 
-    // Make pm3d actually fill a surface from irregular (time,level,value) triples
-    // Choose a grid matching your data: hours are 0,3,6..72 => 25 points
-    // levels: 1000..12000 etc => about 11 points (depends)
+    // Grid the irregular time, level, and value triples before plotting.
     gp << "set dgrid3d 25,30\n";  // (xgrid,ygrid) - gives stable heatmaps
     gp << "set pm3d interpolate 1,1\n";
     gp << "set palette\n";
 
-    // If you want log colors later, uncomment:
+    // Optional logarithmic colour scale:
     // gp << "set logscale cb\n";
 
     gp << "splot '" << gnuplot_path(csv) << "' using 1:2:3 with pm3d\n";
@@ -357,9 +344,7 @@ static std::string make_dust_gnuplot(const fs::path& out_png, const fs::path& cs
     return gp.str();
 }
 
-// ============================
-// Main
-// ============================
+// Entry point
 
 int main() {
     try {
@@ -395,7 +380,7 @@ int main() {
             return 1;
         }
 
-        // --- Export dust_load timeseries CSV (0..72h) ---
+        // Export the dust-load time series.
         fs::path dust_csv = OUT_DIR / (date + "_dust_load.csv");
         int dust_n_ok = 0;
         {
@@ -423,7 +408,7 @@ int main() {
             std::cerr << "Warning: dust_load CSV has 0 valid points in 0..72h.\n";
         }
 
-        // --- Export sconc heatmap CSV (0..72h, level >= 1000 m) ---
+        // Export the concentration heatmap.
         fs::path heat_csv = OUT_DIR / (date + "_sconc_heat.csv");
         int heat_n_ok = 0;
         {
@@ -449,10 +434,10 @@ int main() {
                     try { level_m = std::stod(level_str); }
                     catch (...) { continue; }
 
-                    // Start heatmap at 1000 m
+                    // Skip levels below the configured minimum.
                     if (level_m < HEAT_MIN_LEVEL_M) continue;
 
-                    // Missing values -> emit 0 if requested
+                    // Substitute zero for missing values when configured.
                     double val = 0.0;
                     if (v.is_number()) val = v.num;
                     else if (!HEAT_EMIT_ZERO_FOR_MISSING) continue;
@@ -468,7 +453,7 @@ int main() {
             std::cerr << "Warning: sconc heat CSV has 0 valid points (>=1000m, 0..72h).\n";
         }
 
-        // --- gnuplot scripts ---
+        // Write the gnuplot scripts.
         fs::path dust_gp = OUT_DIR / (date + "_dust_load.gnuplot");
         fs::path dust_png = OUT_DIR / (date + "_dust_load.png");
         write_text_file(dust_gp, make_dust_gnuplot(dust_png, dust_csv, date));

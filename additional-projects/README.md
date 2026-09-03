@@ -1,6 +1,6 @@
-# Additional Codex Projects
+# Additional Projects
 
-Sanitized source snapshots added on 2026-09-02:
+Sanitized source snapshots updated on 2026-09-03:
 
 - `modular-irrigation-node`
 - `esp-idf-hello-world`
@@ -16,4 +16,3 @@ Sanitized source snapshots added on 2026-09-02:
 - `origin-bsc-graphing`
 
 Raw datasets, databases, credentials, environment files, dependencies, compiled builds, logs, and generated archives are intentionally excluded. The FTP uploader reads `FTP_HOST`, `FTP_USER`, and `FTP_PASSWORD` from environment variables.
-

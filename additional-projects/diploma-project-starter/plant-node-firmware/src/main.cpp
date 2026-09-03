@@ -1,3 +1,3 @@
-// Deliberately non-operational starter. Hardware initialisation is a future milestone.
+// TODO: initialize the hardware after the pin assignments are finalized.
 void setup() {}
 void loop() {}

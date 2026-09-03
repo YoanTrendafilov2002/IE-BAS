@@ -1,3 +1,3 @@
-// Deliberately non-operational starter. Networking is a future milestone.
+// TODO: initialize networking after the transport is selected.
 void setup() {}
 void loop() {}

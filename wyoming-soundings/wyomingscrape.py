@@ -3,9 +3,7 @@ import requests
 import re
 from datetime import datetime, timedelta
 
-# =========================
-# USER-ADJUSTABLE PARAMETERS
-# =========================
+# Configuration
 START_DATE = "2025-11-07"   # YYYY-MM-DD
 END_DATE   = "2026-02-01"   # YYYY-MM-DD
 
@@ -16,9 +14,7 @@ EXPORT_DIR = os.environ.get("WYOMING_OUTPUT", "output")
 
 STOP_LINE = "Precipitable water [mm] for entire sounding"
 
-# =========================
-# HELPERS
-# =========================
+# Helpers
 def build_url(date_obj):
     year  = date_obj.strftime("%Y")
     month = date_obj.strftime("%m")
@@ -50,9 +46,7 @@ def clean_and_cut(text):
 
     return "\n".join(kept) + "\n" if kept else None
 
-# =========================
-# MAIN LOOP
-# =========================
+# Download loop
 os.makedirs(EXPORT_DIR, exist_ok=True)
 
 start = datetime.strptime(START_DATE, "%Y-%m-%d")

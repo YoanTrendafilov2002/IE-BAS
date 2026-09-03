@@ -10,7 +10,7 @@
 
 namespace fs = std::filesystem;
 
-// ---------- helpers ----------
+// Parsing helpers
 static inline std::string trim(std::string s) {
     auto notSpace = [](unsigned char c){ return !std::isspace(c); };
     s.erase(s.begin(), std::find_if(s.begin(), s.end(), notSpace));
@@ -62,7 +62,7 @@ static inline std::string basename_noext(const std::string& path) {
     return stem.empty() ? "output" : stem;
 }
 
-// ---------- Vaisala parsing ----------
+// Vaisala format
 static std::unordered_map<std::string, std::string>
 parse_key_value_payload(const std::string& payload) {
     std::unordered_map<std::string, std::string> kv;
@@ -146,7 +146,7 @@ static bool parse_vaisala_numeric_line(
     return true;
 }
 
-// ---------- Luft parsing (minimal + robust) ----------
+// Luft format
 static bool parse_luft_line(
     const std::vector<std::string>& t,
     std::unordered_map<std::string, std::string>& out,
@@ -162,7 +162,7 @@ static bool parse_luft_line(
 
     if (!t.empty()) out["MsgType"] = t[0]; // e.g. G97
 
-    // Try station markers commonly seen in your samples
+    // Check the station markers used by known sample files.
     for (const auto& tok : t) {
         if (tok == "NIT1" || tok == "WS500") {
             out["Station"] = tok;
@@ -233,7 +233,7 @@ int main() {
     std::ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
 
-    // --- ask mode (loop until valid) ---
+    // Prompt until a supported mode is selected.
     std::string mode_in;
     while (true) {
         std::cout << "Type mode (luft or vaisala): " << std::flush;
@@ -254,13 +254,13 @@ int main() {
         std::cout << "Invalid. Please type exactly: luft OR vaisala\n";
     }
 
-    // mode used for parsing logic
+    // Numeric mode used by the parser.
     const bool is_luft = (mode_in == "luft");
     const std::string mode_for_filename = mode_in;          // exactly "luft" or "vaisala"
     const std::string mode_for_json = mode_in;              // same (keeps consistent)
     const std::string product = is_luft ? "" : "Vaisala WXT536";
 
-    // --- ask input file path ---
+    // Read the input path.
     std::string inPath;
     std::cout << "Input file path: " << std::flush;
     if (!std::getline(std::cin, inPath)) {
